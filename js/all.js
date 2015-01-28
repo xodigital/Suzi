@@ -85,29 +85,30 @@ var grid = {
 
 var placeholder = {
 	init: function() {
-		if (!Modernizr.input.placeholder) {
-			var $placeholder = $('[placeholder]');
-			
-			$placeholder.focus(function() {
-				var $input = $(this);
-				if ($input.val() === $input.attr('placeholder'))
-					$input.val('').removeClass('placeholder');
-			}).blur(function() {
-				var $input = $(this);
-				if ($input.val() === '' || $input.val() === $input.attr('placeholder'))
-					$input.addClass('placeholder').val($input.attr('placeholder'));
-			}).blur();
-			
-			$placeholder.parents('form').on('submit', function() {
-				$(this).find('[placeholder]').each(function() {
-					var $input = $(this);
-					if ($input.val() === $input.attr('placeholder'))
-						$input.val('');
+		if (!Modernizr.placeholder) {
+			$('[placeholder]').each(function() {
+				var $this = $(this),
+					attr = this.getAttribute('placeholder');
+				
+				$this.focus(function() {
+					if (this.value === attr) {
+						$this.removeClass('placeholder')[0].value = '';
+					}
+				}).blur(function() {
+					if (this.value.length === 0 || this.value === attr) {
+						$this.addClass('placeholder')[0].value = attr;
+					}
+				}).blur();
+				
+				$this.parents('form').on('submit', function() {
+					if ($this[0].value === attr) {
+						$this[0].value = '';
+					}
 				});
 			});
+			
+			$html.addClass('placeholder');
 		}
-		
-		$html.addClass('placeholder');
 	}
 };
 
@@ -322,6 +323,14 @@ var slider = {
 						complete: function() {
 							this.slide(globalPos);
 							isComplete = true;
+							
+							if (layoutEngine.vendor === 'webkit' && cssua.ua.safari) {
+								window.setTimeout(function() {
+									isVisible = true;
+									$slides.css('visibility', 'visible');
+									$feature.css('visibility', 'visible');
+								}, speed + 1);
+							}
 						},
 						
 						touchCallback: function() {

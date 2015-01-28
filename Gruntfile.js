@@ -92,6 +92,29 @@ module.exports = function (grunt) {
 			}
 		},
 		
+		modernizr: {
+			dist: {
+				devFile: 'remote',
+				outputFile: '<%= globalConfig.path.js.vendor %>/modernizr.js',
+				extra: {
+					shiv: false,
+					printshiv: false,
+					load: false,
+					mq: false,
+					cssclasses: true,
+				},
+				uglify: false,
+				files: {
+					src: [
+						'<%= globalConfig.path.css.dist %>/all.css',
+						'<%= globalConfig.path.css.dist %>/ltie9.css',
+						'<%= globalConfig.path.js.src %>/all.js'
+					]
+				},
+				matchCommunityTests: true
+			}
+		},
+		
 		concat: {
 			base: {
 				src: [
@@ -315,7 +338,7 @@ module.exports = function (grunt) {
 		watch: {
 			css: {
 				files: ['<%= globalConfig.path.css.src %>/**/*.scss'],
-				tasks: ['sass:dist', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks'],
+				tasks: ['sass:dist', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'modernizr'],
 				options: {
 					spawn: false,
 				}
@@ -336,7 +359,7 @@ module.exports = function (grunt) {
 			},
 			js: {
 				files: ['<%= globalConfig.path.js.src %>/**/*.js'],
-				tasks: ['newer:concat', 'newer:uglify', 'regex-replace:cachebustjs'],
+				tasks: ['modernizr', 'newer:concat', 'newer:uglify', 'regex-replace:cachebustjs'],
 				options: {
 					spawn: false
 				}
@@ -360,7 +383,7 @@ module.exports = function (grunt) {
 		watchdev: {
 			css: {
 				files: ['<%= globalConfig.path.css.src %>/**/*.scss'],
-				tasks: ['sass:dev', 'regex-replace:cachebustcss', 'regex-replace:cssimages'],
+				tasks: ['sass:dev', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'modernizr'],
 				options: {
 					spawn: false,
 				}
@@ -374,7 +397,7 @@ module.exports = function (grunt) {
 			},
 			js: {
 				files: ['<%= globalConfig.path.js.src %>/**/*.js'],
-				tasks: ['newer:concat', 'regex-replace:cachebustjs'],
+				tasks: ['modernizr', 'newer:concat', 'regex-replace:cachebustjs'],
 				options: {
 					spawn: false
 				}
@@ -419,6 +442,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-newer');
 	grunt.loadNpmTasks('grunt-fileindex');
 	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-modernizr');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-copy');
@@ -432,9 +456,17 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-html');
 	
+	
 	grunt.registerTask('build', ['sass:dist', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
 	grunt.registerTask('default', ['build', 'browserSync', 'watch']);
 	grunt.registerTask('dev', ['sass:dev', 'regex-replace:cssimages', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
+
+	/**
+	grunt.registerTask('build', ['sass:dist', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'modernizr', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'includereplacemore', 'regex-replace:currentpaths', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
+	grunt.registerTask('default', ['build', 'newer:copy:html', 'browserSync', 'watch']);
+	grunt.registerTask('dev', ['sass:dev', 'regex-replace:cssimages', 'modernizr', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'includereplacemore', 'regex-replace:currentpaths', 'newer:copy:html', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
+	*/
+
 	grunt.registerTask('bust', ['regex-replace:cachebustcss', 'regex-replace:cachebustjs']);
 	grunt.registerTask('validate', ['htmllint']);
 	grunt.registerTask('version', ['regex-replace:version']);
