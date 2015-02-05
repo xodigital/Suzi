@@ -26,7 +26,8 @@ module.exports = function (grunt) {
 				src: 'js',
 				vendor: '<%= globalConfig.path.js.src %>/vendor',
 				dist: '<%= globalConfig.path.dist %>/<%= globalConfig.path.js.src %>',
-				distvendor: '<%= globalConfig.path.js.dist %>/vendor'
+				distvendor: '<%= globalConfig.path.js.dist %>/vendor',
+				modules: '<%= globalConfig.path.js.src %>/modules'
 			},
 			images: {
 				src: 'images',
@@ -126,6 +127,10 @@ module.exports = function (grunt) {
 				],
 				dest: '<%= globalConfig.path.js.dist %>/base.js'
 			},
+			modules: {
+				src: '<%= globalConfig.path.js.modules %>/*.js',
+				dest: '<%= globalConfig.path.js.dist %>/modules.js'
+			},
 			all: {
 				// Customise as appropriate
 				src: [
@@ -164,6 +169,10 @@ module.exports = function (grunt) {
 				cwd: '<%= globalConfig.path.js.vendor %>',
 				src: '*js',
 				dest: '<%= globalConfig.path.js.distvendor %>'
+			},
+			modules: {
+				src: '<%= globalConfig.path.js.dist %>/modules.js',
+				dest: '<%= globalConfig.path.js.dist %>/modules.js'
 			},
 			bundles: {
 				expand: true,
