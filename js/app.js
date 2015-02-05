@@ -7,14 +7,14 @@
 		baseFontSize = 16,
 		multiplier;
 
-		var trackEvent = function(campaign, action, label) {
-		var clean = function(str) {
-			return str.toString().replace(/\s|'|"/g, '-');
-		};
+	var trackEvent = function(campaign, action, label) {
+	var clean = function(str) {
+		return str.toString().replace(/\s|'|"/g, '-');
+	};
 
-		if (typeof(_gaq) !== 'undefined')
-			_gaq.push(['_trackEvent', clean(campaign), clean(action), clean(label)]);
-		};
+	if (typeof(_gaq) !== 'undefined')
+		_gaq.push(['_trackEvent', clean(campaign), clean(action), clean(label)]);
+	};
 
 	$html.addClass('jquery');
 	
