@@ -109,7 +109,8 @@ module.exports = function (grunt) {
 					src: [
 						'<%= globalConfig.path.css.dist %>/all.css',
 						'<%= globalConfig.path.css.dist %>/ltie9.css',
-						'<%= globalConfig.path.js.src %>/all.js'
+						'<%= globalConfig.path.js.src %>/modules.js',
+						'<%= globalConfig.path.js.src %>/app.js'
 					]
 				},
 				matchCommunityTests: true
@@ -119,6 +120,7 @@ module.exports = function (grunt) {
 		concat: {
 			base: {
 				src: [
+					// Dependencies.
 					'<%= globalConfig.path.js.vendor %>/cssua.js',
 					'<%= globalConfig.path.js.vendor %>/modernizr.js',
 					'<%= globalConfig.path.js.vendor %>/supports.touch.js',
@@ -127,13 +129,9 @@ module.exports = function (grunt) {
 				],
 				dest: '<%= globalConfig.path.js.dist %>/base.js'
 			},
-			modules: {
-				src: '<%= globalConfig.path.js.modules %>/*.js',
-				dest: '<%= globalConfig.path.js.dist %>/modules.js'
-			},
 			all: {
-				// Customise as appropriate
 				src: [
+					// Vendor scripts - append as needed.
 					'<%= globalConfig.path.js.vendor %>/matchMedia.js',
 					'<%= globalConfig.path.js.vendor %>/matchMedia.addListener.js',
 					'<%= globalConfig.path.js.vendor %>/enquire.js',
@@ -142,7 +140,12 @@ module.exports = function (grunt) {
 					'<%= globalConfig.path.js.vendor %>/fastclick.js',
 					'<%= globalConfig.path.js.vendor %>/swipe.js',
 					'<%= globalConfig.path.js.vendor %>/jquery.transit.js',
-					'<%= globalConfig.path.js.src %>/all.js'
+
+					// Modules.
+					'<%= globalConfig.path.js.modules %>/*.js',
+
+					// Application code.
+					'<%= globalConfig.path.js.src %>/app.js',
 				],
 				dest: '<%= globalConfig.path.js.dist %>/all.js'
 			},
@@ -160,25 +163,21 @@ module.exports = function (grunt) {
 				src: '<%= globalConfig.path.js.dist %>/base.js',
 				dest: '<%= globalConfig.path.js.dist %>/base.js'
 			},
-			all: {
-				src: '<%= globalConfig.path.js.dist %>/all.js',
-				dest: '<%= globalConfig.path.js.dist %>/all.js'
-			},
 			vendor: {
 				expand: true,
 				cwd: '<%= globalConfig.path.js.vendor %>',
 				src: '*js',
 				dest: '<%= globalConfig.path.js.distvendor %>'
 			},
-			modules: {
-				src: '<%= globalConfig.path.js.dist %>/modules.js',
-				dest: '<%= globalConfig.path.js.dist %>/modules.js'
-			},
 			bundles: {
 				expand: true,
 				cwd: '<%= globalConfig.path.js.distvendor %>',
 				src: '_bundle.*js',
 				dest: '<%= globalConfig.path.js.distvendor %>'
+			},
+			all: {
+				src: '<%= globalConfig.path.js.dist %>/all.js',
+				dest: '<%= globalConfig.path.js.dist %>/all.js'
 			}
 		},
 		
