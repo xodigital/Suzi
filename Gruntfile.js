@@ -50,11 +50,11 @@ module.exports = function (grunt) {
 	}
 
 	var hierarchy = require('./content/hierarchy');
-	
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		globalConfig: globalConfig,
-		
+
 		fileindex: {
 			custom: {
 				options: {
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 				]
 			}
 		},
-		
+
 		sass: {
 			dev: {
 				options: {
@@ -92,7 +92,7 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		
+
 		modernizr: {
 			dist: {
 				devFile: 'remote',
@@ -116,7 +116,7 @@ module.exports = function (grunt) {
 				matchCommunityTests: true
 			}
 		},
-		
+
 		concat: {
 			base: {
 				src: [
@@ -141,8 +141,17 @@ module.exports = function (grunt) {
 					'<%= globalConfig.path.js.vendor %>/swipe.js',
 					'<%= globalConfig.path.js.vendor %>/jquery.transit.js',
 
-					// Modules.
-					'<%= globalConfig.path.js.modules %>/*.js',
+					// Modules - append as needed.
+					'<%= globalConfig.path.js.modules %>/accordion.js',
+					'<%= globalConfig.path.js.modules %>/cookie.js',
+					'<%= globalConfig.path.js.modules %>/forms.js',
+					'<%= globalConfig.path.js.modules %>/grid.js',
+					'<%= globalConfig.path.js.modules %>/placeholder.js',
+					'<%= globalConfig.path.js.modules %>/slider.js',
+					'<%= globalConfig.path.js.modules %>/tables.js',
+					'<%= globalConfig.path.js.modules %>/tabs.js',
+					'<%= globalConfig.path.js.modules %>/transition.js',
+					'<%= globalConfig.path.js.modules %>/viewport-size.js',
 
 					// Application code.
 					'<%= globalConfig.path.js.src %>/app.js',
@@ -157,7 +166,7 @@ module.exports = function (grunt) {
 				dest: '<%= globalConfig.path.js.distvendor %>/_bundle.jquery.cycle.js'
 			}
 		},
-		
+
 		uglify: {
 			base: {
 				src: '<%= globalConfig.path.js.dist %>/base.js',
@@ -180,7 +189,7 @@ module.exports = function (grunt) {
 				dest: '<%= globalConfig.path.js.dist %>/all.js'
 			}
 		},
-		
+
 		copy: {
 			fonts: {
 				expand: true,
@@ -213,7 +222,7 @@ module.exports = function (grunt) {
 						jsVendorPath: '/<%= globalConfig.path.js.vendor %>/',
 						imgPath: '/<%= globalConfig.path.images.src %>/',
 						imgContentPath: '/<%= globalConfig.path.images.src %>/content/',
-					
+
 						// Customise as appropriate
 						siteName: 'Site Name'
 					}
@@ -236,7 +245,7 @@ module.exports = function (grunt) {
 				dest: '<%= globalConfig.path.html.dist %>'
 			}
 		},
-		
+
 		'regex-replace': {
 			version: {
 				src: [
@@ -263,8 +272,8 @@ module.exports = function (grunt) {
 							var pageName = p1.replace(/-/g, ' ').replace(/(?:^|\s)\S/g, function(a) {
 								return a.toUpperCase();
 							});
-							
-							return '<li><a class="link-feature" href="' + p1 + p2 + '">' + pageName + '</a></li>' + p3; 
+
+							return '<li><a class="link-feature" href="' + p1 + p2 + '">' + pageName + '</a></li>' + p3;
 						}
 					}
 				]
@@ -306,7 +315,7 @@ module.exports = function (grunt) {
 				]
 			}
 		},
-		
+
 		imagemin: {
 			dynamic: {
 				files: [{
@@ -317,7 +326,7 @@ module.exports = function (grunt) {
 				}]
 			}
 		},
-		
+
 		svgmin: {
 			dynamic: {
 				files: [{
@@ -328,7 +337,7 @@ module.exports = function (grunt) {
 				}]
 			}
 		},
-		
+
 		browserSync: {
 			bsFiles: {
 				src: ['<%= globalConfig.path.css.dist %>/*.css', '<%= globalConfig.path.dist %>/**/*.html', '<%= globalConfig.path.js.dist %>/*.js']
@@ -342,7 +351,7 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		
+
 		watch: {
 			css: {
 				files: ['<%= globalConfig.path.css.src %>/**/*.scss'],
@@ -387,7 +396,7 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		
+
 		watchdev: {
 			css: {
 				files: ['<%= globalConfig.path.css.src %>/**/*.scss'],
@@ -425,7 +434,7 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		
+
 		htmllint: {
 			options: {
 				ignore: [
@@ -444,9 +453,9 @@ module.exports = function (grunt) {
 			},
 			src: ['<%= globalConfig.path.html.dist %>/**/*.html']
 		}
-	
+
 	});
-	
+
 	grunt.loadNpmTasks('grunt-newer');
 	grunt.loadNpmTasks('grunt-fileindex');
 	grunt.loadNpmTasks('grunt-contrib-sass');
@@ -463,7 +472,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-browser-sync');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-html');
-	
+
 
 	grunt.registerTask('default', ['dev', 'browserSync', 'watch']);
 
