@@ -9,17 +9,15 @@ var trackEvent = function(campaign, action, label) {
 	var clean = function(str) {
 		return str.toString().replace(/\s|'|"/g, '-');
 	};
-
 	if (typeof(_gaq) !== 'undefined')
 		_gaq.push(['_trackEvent', clean(campaign), clean(action), clean(label)]);
 };
 
-$(document).ready(function()
-{
+$(document).ready(function() {
 	$html.addClass('jquery');
-	
+
 	FastClick.attach(document.body);
-	
+
 	grid.init();
 	placeholder.init();
 	forms.init();
@@ -27,5 +25,4 @@ $(document).ready(function()
 	tabs.init();
 	accordion.init();
 	tables.init();
-	
 });
