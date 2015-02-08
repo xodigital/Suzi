@@ -57,7 +57,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * Create templates in /html/_builds/
 * Create and customise template includes in /html/_includes/
 * Set the `title` variable to customise the page's `<title>`
-* Build your navigation hierarchy by modifying /content/hierarchy.js 
+* Build your navigation hierarchy by modifying /content/hierarchy.js
 * You'll find common markup patterns in /html/_markup
 * Access a quick list of all builds by browsing to http://localhost:3000/builds/index.html
 
@@ -74,10 +74,30 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 
 #### JavaScripts
 
-* Use /js/all.js for all custom methods
-* Customise `concat.all.src` in Gruntfile.js to add or remove scripts which are to be loaded at all times
+* Create modules in /js/modules/module-name.js
+* Use /js/app.js for module initialization
+* Try to pass reference to module dependencies in the `init()` method attached to your module, rather than relying on it being available in the global scope
+* Customise `concat.all.src` in Gruntfile.js to add or remove scripts which are to be loaded at all times; this includes vendor scripts and modules
 * Put any *un-minified* JavaScript plugins/libraries in /js/vendor
 * Lazy-load additional scripts using `window.suzi.jsVendorPath + 'plugin.name.js'`
+
+Use the following template for modules:
+
+<pre>
+var moduleName = (function() {
+	// Internal module properties and methods.
+	// ...
+
+	return {
+		init: function() {
+			// ...
+		}
+
+		// Exposed module properties and methods.
+		// ...
+	};
+})();
+</pre>
 
 #### Images
 
@@ -103,7 +123,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `em($pixels, $context: 16, $unitless: false)`
 
 	Converts a pixel value to ems, with an optional parameter to make it unitless (which is useful for line-heights)
-	
+
 	* `$pixels`: target size in pixels
 	* `$context`: context size in pixels (default: 16)
 	* `$unitless`: whether to omit the em unit (default: false)
@@ -111,7 +131,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `percent($pixels, $context: $site-width)`
 
 	Converts a pixel value to a percentage
-	
+
 	* `$pixels`: target size in pixels
 	* `$context`: context size in pixels (default: $site-width)
 
@@ -120,7 +140,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `calc($property, $expression, $fallback: false)`
 
 	Outputs the [`calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) CSS function and an optional fallback
-	
+
 	* `$property`: The CSS property to be used
 	* `$expression`: A mathematical expression, the result of which is used as the value
 	* `fallback`: A fallback value for browsers that don't support `calc()`
@@ -140,7 +160,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `grid($breakpoints: (480, 600, 768, 960), $percentages: (10, 20, 25, 30, 33.3333, 40, 50, 60, 66.6666, 70, 75, 80, 90, 100), $float-classes: false)`
 
 	Outputs relevant media queries and helper classes for [Suzi's flexible, customisable and responsive grid system](https://github.com/xodigital/Suzi/blob/master/builds/markup/grid.html)
-	
+
 	* `$breakpoints`: A list of the breakpoints (in pixels) that media queries and classes should be generated for (default: 480, 600, 768, 960))
 	* `$percentages`: A list of the class name percentages to be output for each breakpoint and as simple default overrides (default: 10, 20, 25, 30, 33.3333, 40, 50, 60, 66.6666, 70, 75, 80, 90, 100)
 	* `$float-classes`: Whether to output classes to `float` `.grid_item`s to alter source order appearance (default: false)
@@ -148,7 +168,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `grid-override($name, $gutter, $media-query: false)`
 
 	Outputs `$name_`-prefixed `.grid_container` and `.grid_item` classes to override standard grid styles.
-	
+
 	* `$name`: The prefix to use for `.grid_container` and `.grid_item` classes. For instance, `$name: small` produces `.small_grid_container` and `.small_grid_item`
 	* `$gutter`: The new gutter value for the relevant `margin` and `padding` properties for these grid override classes
 	* `$gutter` can also be a list to allow different horizontal and vertical gutters. The 1st parameter is horizontal, and the 2nd vertical, eg: `(30px, 10px)` for 30px horizontal and 10px vertical
@@ -157,13 +177,13 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `hover($pseudo: false)`
 
 	Outputs `:hover` & `:focus` rules for the current element
-	
+
 	* `$pseudo`: the name of a single pseudo-element (after, before) or a list of multiple to create `:hover` & `:focus` rules for
-	
+
 * `nth-child($an: 2n, $sibling: '*', $count: 15)`
 
 	Allows nth-child functionality for .ltie9 (if you can't/don't want to use [Selectivzr](http://selectivizr.com)) by outputting crazy sibling selectors
-	
+
 	* `$an`: the counting method, eg: 2n, 3n, odd (default: 2n)
 	* `$an` can also be a list, with the 2nd parameter being the modifier, eg: 2 for ($an+2) or -3 for ($an-3)
 	* `$sibling`: the sibling element selector, eg: 'li', 'div' (default: '*')
@@ -185,14 +205,14 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `placeholder($color: $form-placeholder-color, $text-transform: $form-placeholder-text-transform)`
 
 	Outputs cross-browser placeholder styles using
-	
+
 	* `$color`: Sets the `color` of the placeholder text (default: $form-placeholder-color)
 	* `$text-transform`: Sets the `text-transform` property of the placeholder text (default: $form-placeholder-text-transform)
 
 * `rem($property, $values, $use-px-fallback: $rem-with-px-fallback)`
 
 	Converts a pixel value to rems, while also outputting the pixel fallback (optional)
-	
+
 	* `$property`: valid CSS property
 	* `$values`: valid CSS value in pixels
 	* `$use-px-fallback`: whether to output a pixel fallback as well (default: $rem-with-px-fallback [true])
@@ -202,7 +222,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `classquery($class-name, $output-ltie9-rule)`
 
 	Generates `.classquery-$class-name` & (optional) `.ltie9 [data-classquery*=".classquery-$class-name"]` selectors to be used with class.query.js to manage responsive content
-	
+
 	* `$class-name`: the class name to use (default: default)
 	* `$output-ltie9-rule`: whether to output the `.ltie9` rule. Set to false if the class is used for a max-width media query (default: true)
 
@@ -213,7 +233,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `hidden($hide: true)`
 
 	Accessibly hide (and un-hide) an element off-screen
-	
+
 	* `$hide`: whether to hide or unhide the (default: true)
 
 * `hide-text($display: false, $width: false, $height: false)`
@@ -227,7 +247,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `horizontal($vertical-align: top, $width: 100%)`
 
 	Sets the `UL` specified and its immediate `LI`s to use `display: table` to create an evenly spaced, horizontal list for modern browsers and uses floats for `.ltie8`. Used in the `.horizontal` and `.horizontal_auto` classes
-	
+
 	* `$vertical-align`: the `vertical-align` value to give to the child `LI`s (default: top)
 	* `$width`: the `width` value to give to the `UL` (default: 100%)
 
@@ -244,7 +264,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `animation($property: default 1s ease)`
 
 	Outputs -moz, -o-, -webkit and unprefixed `animation` with the value passed in (default: default 1s ease)
-	
+
 * `animation-delay($value: 1s)`
 
 	Outputs -moz, -o-, -webkit and unprefixed `animation-delay` with the value passed in (default: 1s)
@@ -280,7 +300,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `border-radius($radius: 5px, $background-clip: padding-box)`
 
 	Outputs -webkit and unprefixed `border-radius`
-	
+
 	* `$radius`: radius to use (default: 5px)
 	* `$background-clip`: which `background-clip` property to use (if any) (default: padding-box)
 
@@ -299,11 +319,11 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `font-size-line-height($font-size, $line-height: false, $important: false)`
 
 	Outputs a rem (and pixel fallback) font-size and an optional unitless line-height from the values provided
-	
+
 	* `$font-size`: target `font-size` to achieve in pixels
 	* `$line-height`: target `line-height` size to achieve in pixels if not `false` (default: false)
 	* `$important`: whether to also output an `!important` declaration on both properties (default: false)
-	
+
 * `keyframes($name)`
 
 	Outputs -moz, -o-, -webkit and unprefixed animation `@keyframes` named with the value passed in
@@ -311,7 +331,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `line-height($target, $context: 16, $important: false)`
 
 	Outputs a unitless line-height from the target and context sizes provided
-	
+
 	* `$target`: target `line-height` size to achieve in pixels
 	* `$context`: the `font-size` in pixels of the current element (default: 16)
 	* `$important`: whether to also output an `!important` declaration (default: false)
@@ -319,14 +339,14 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `pie($position: relative, $path: false)`
 
 	Outputs a `position` property and CSS3PIE `behavior` property with path to PIE.htc
-	
+
 	* `$position:` `position` property to use or `false` for none (default: relative)
 	* `$path`: path to PIE.htc if specified, otherwise uses `$default-pie-path` variable when `false` (default: false [$default-pie-path: '/css/PIE.htc'])
 
 * `rgba($property, $value: '', $color: #000, $opacity: 0.5, $use-fallback: true)`
 
 	Converts any property's color and opacity to `rgba`, with the option to output a default fallback color or a composite fallback color of your choice
-	
+
 	* `$property`: the CSS property to use, for example `border`
 	* `$value`: an optional value prefix to use, such as `1px solid` (default '')
 	* `$color`: color to be converted - either a single value or a list
@@ -337,7 +357,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * `rgba-background($color, $opacity: 0.5, $use-fallback: true, $use-background-color: false)`
 
 	Converts a background color and opacity to `rgba`, with the option to output a default fallback color or a composite fallback color of your choice
-	
+
 	* `$color`: color to be converted - either a single value or a list
 	* if `$color` is a list, the second parameter is used as the fallback colour - useful for composite fallbacks
 	* `$opacity`: alpha opacity of the color (default: 0.5)
@@ -387,7 +407,7 @@ Four variables are provided for media query operators: `$min`, `$max`, `$min-h` 
 * `media-query($value, $ltie9: $use-ltie9-mq-fallbacks, $operator: $min, $px: false)`
 
 	Outputs a standard media query using ems and an optional .ltie9 fallback
-	
+
 	* `$value`: pixel value for the breakpoint
 	* `$ltie9`: whether to output .ltie9 fallback (default: $use-ltie9-mq-fallbacks [true])
 	* `$operator`: operator for the breakpoint, e.g. min-width, max-width, min-height, max-height (default: $min [min-width])
@@ -396,7 +416,7 @@ Four variables are provided for media query operators: `$min`, `$max`, `$min-h` 
 * `media-query-and($mqs, $first-operator: $min, $second-operator: $max, $px: false)`
 
 	Outputs a media query with an 'and' condition and an optional .ltie9 fallback (unless max-width is less than $site-width)
-	
+
 	* `$mqs`: A list (or list of lists) of two pixel values for the first and second breakpoints. If the second value is omitted in a nested list, then it uses the standard `media-query()` mixin
 	* `$ltie9`: whether to output .ltie9 fallback (default: $use-ltie9-mq-fallbacks [true])
 	* `$first-operator`: operator for the first breakpoint, e.g. min-width, max-width, min-height, max-height (default: $min [min-width])
