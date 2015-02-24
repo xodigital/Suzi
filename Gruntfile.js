@@ -474,7 +474,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-html');
 
 
-	grunt.registerTask('default', ['build', 'browserSync', 'watch']);
+	grunt.registerTask('default', ['build']);
 
 	grunt.registerTask('build', ['sass:dist', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
 	grunt.registerTask('dev', ['sass:dev', 'regex-replace:cssimages', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
