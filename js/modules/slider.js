@@ -354,7 +354,7 @@ var slider = (function() {
 								if (pager) {
 									$navPager.css('z-index', slidesCount + 1).find('a').each(function(i) {
 										$(this).on('click', function(e) {
-											slider.lazyLoad(slider.$imagesLazy[index].eq(i));
+											slider.lazyLoad($imagesLazy.eq(i));
 											$feature.cycle('pause');
 										});
 									});
