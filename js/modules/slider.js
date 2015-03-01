@@ -277,6 +277,19 @@ var slider = (function() {
 						}
 					}
 					else {
+						// Fix huge horizontal scrollbar on IE8.
+						$('.inner').css('overflow', 'hidden');
+
+						$(window).on('resize', function(event) {
+							var windowWidth = $(window).width();
+							var totalSlides = $('.carousel li').length;
+
+							$('.carousel').width(windowWidth);
+							$('.carousel .slider li').width(windowWidth).attr('cycleW', windowWidth);
+							
+							$('.slider').width(windowWidth * totalSlides);
+						});
+
 						var $feature = $this.find('.slider'),
 							widthOverride = 'width: 100% !important',
 
