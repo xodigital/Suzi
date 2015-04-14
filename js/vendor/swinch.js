@@ -1,6 +1,10 @@
 /*!
  * swinch v0.1.0
  *
+ * This version is a fork that allows access to the direction and distance for both onMove & onEnd
+ *
+ * https://github.com/jmsbrr/swinch.js/
+ *
  * A lightweight, customisable, horizontal touch detection script
  *
  * Copyright (c) 2014 Matt Stow
@@ -65,7 +69,7 @@ swinch.prototype = {
 			e.preventDefault();
 			e.stopPropagation();
 			
-			this.onMove(this.deltaX);
+			this.onMove(this.deltaX, this.deltaX < 0 ? 'left' : 'right');
 		}
 	},
 	
@@ -73,7 +77,7 @@ swinch.prototype = {
 		var isValid = Number(new Date()) - this.start.time > this.thresholdDuration && Math.abs(this.deltaX) > this.thresholdDistance;
 
 		if (!this.isScrolling && isValid) {
-			this.onEnd(this.deltaX < 0 ? 'left' : 'right');
+			this.onEnd(this.deltaX, this.deltaX < 0 ? 'left' : 'right', Number(new Date()) - this.start.time);
 		}
 
 		e.stopPropagation();

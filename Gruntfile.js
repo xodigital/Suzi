@@ -140,6 +140,7 @@ module.exports = function (grunt) {
 					'<%= globalConfig.path.js.vendor %>/fastclick.js',
 					'<%= globalConfig.path.js.vendor %>/swipe.js',
 					'<%= globalConfig.path.js.vendor %>/jquery.transit.js',
+					'<%= globalConfig.path.js.vendor %>/swinch.js',
 
 					// Modules - append as needed.
 					'<%= globalConfig.path.js.modules %>/accordion.js',
@@ -152,6 +153,7 @@ module.exports = function (grunt) {
 					'<%= globalConfig.path.js.modules %>/tabs.js',
 					'<%= globalConfig.path.js.modules %>/transition.js',
 					'<%= globalConfig.path.js.modules %>/viewport-size.js',
+					'<%= globalConfig.path.js.modules %>/navigation.js',
 
 					// Application code.
 					'<%= globalConfig.path.js.src %>/app.js',
