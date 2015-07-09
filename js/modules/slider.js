@@ -334,9 +334,9 @@ var slider = (function() {
 							cycleOpts.pager = '#nav_pager-' + index;
 							cycleOpts.pagerAnchorBuilder = function(idx, slide) {
 								if (thumbnails)
-									return '<li><a href="#slide-' + (idx + 1) + '">' + ($slides.eq(idx).data('pager-thumbnail') ? '<img src="' + $slides.eq(idx).data('pager-thumbnail') + '" alt="Slide ' + (idx + 1) + '" />' : 'Slide ' + (idx + 1)) + '</a></li>';
+									return '<li class="reset carousel_nav_pager_item"><a href="#slide-' + (idx + 1) + '">' + ($slides.eq(idx).data('pager-thumbnail') ? '<img src="' + $slides.eq(idx).data('pager-thumbnail') + '" alt="Slide ' + (idx + 1) + '" />' : 'Slide ' + (idx + 1)) + '</a></li>';
 								else
-									return '<li><a href="#slide-' + (idx + 1) + '">Slide ' + (idx + 1) + '</a></li>';
+									return '<li class="reset carousel_nav_pager_item"><a href="#slide-' + (idx + 1) + '">Slide ' + (idx + 1) + '</a></li>';
 							};
 						}
 
