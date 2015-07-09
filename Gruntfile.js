@@ -104,6 +104,7 @@ module.exports = function (grunt) {
 					mq: false,
 					cssclasses: true,
 				},
+				tests : ['csstransforms3d'],
 				uglify: false,
 				files: {
 					src: [
