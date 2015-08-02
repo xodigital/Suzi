@@ -896,12 +896,12 @@ button, [type="submit"] {
 	}
 }
 
-.accordion_toggler {
+.accordion__toggler {
 	display: block;
 	text-decoration: none;
 }
 
-.accordion_content {
+.accordion__content {
 	.js & {
 		height: 0;
 		overflow: hidden;
