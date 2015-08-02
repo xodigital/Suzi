@@ -163,13 +163,13 @@ var moduleName = (function() {
 
 	* `$breakpoints`: A list of the breakpoints (in pixels) that media queries and classes should be generated for (default: 480, 600, 768, 960))
 	* `$percentages`: A list of the class name percentages to be output for each breakpoint and as simple default overrides (default: 10, 20, 25, 30, 33.3333, 40, 50, 60, 66.6666, 70, 75, 80, 90, 100)
-	* `$float-classes`: Whether to output classes to `float` `.grid_item`s to alter source order appearance (default: false)
+	* `$float-classes`: Whether to output classes to `float` `.grid__item`s to alter source order appearance (default: false)
 
 * `grid-override($name, $gutter, $media-query: false)`
 
-	Outputs `$name_`-prefixed `.grid_container` and `.grid_item` classes to override standard grid styles.
+	Outputs `$name_`-prefixed `.grid` and `.grid__item` classes to override standard grid styles.
 
-	* `$name`: The prefix to use for `.grid_container` and `.grid_item` classes. For instance, `$name: small` produces `.small_grid_container` and `.small_grid_item`
+	* `$name`: The prefix to use for `.grid` and `.grid__item` classes. For instance, `$name: small` produces `.small_grid` and `.small_grid__item`
 	* `$gutter`: The new gutter value for the relevant `margin` and `padding` properties for these grid override classes
 	* `$gutter` can also be a list to allow different horizontal and vertical gutters. The 1st parameter is horizontal, and the 2nd vertical, eg: `(30px, 10px)` for 30px horizontal and 10px vertical
 	* `$media-query`: Whether to only override the gutter at a particular media query

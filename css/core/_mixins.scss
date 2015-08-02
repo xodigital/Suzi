@@ -497,14 +497,14 @@ $rem-with-px-fallback: true !default;
 	$bp: '';
 	$pc: '';
 	
-	.grid_container {
+	.grid {
 		@extend %clearfix;
 		list-style: none;
 		margin-bottom: 0;
 		margin-left: -$std-gutter;
 	}
 	
-	.grid_item {
+	.grid__item {
 		@include box-sizing;
 		float: left;
 		margin-bottom: $std-gutter;
@@ -607,23 +607,23 @@ $rem-with-px-fallback: true !default;
 	}
 	
 	@if ($media-query == false) {
-		.grid_container--#{$name} {
+		.grid--#{$name} {
 			margin-left: -$gutter-left;
 		}
 
-		.grid_item--#{$name} {
+		.grid__item--#{$name} {
 			margin-bottom: $gutter-bottom;
 			padding-left: $gutter-left;
 		}
 	}
 	@else if (type-of($media-query) == 'number') {
-		.grid_container--#{$name} {
+		.grid--#{$name} {
 			@include media-query($media-query) {
 				margin-left: -$gutter-left;
 			}
 		}
 
-		.grid_item--#{$name} {
+		.grid__item--#{$name} {
 			@include media-query($media-query) {
 				margin-bottom: $gutter-bottom;
 				padding-left: $gutter-left;
