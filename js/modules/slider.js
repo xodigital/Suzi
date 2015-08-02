@@ -98,7 +98,7 @@ var slider = (function() {
 					slider.lazyLoad($imagesLazy, globalPos, globalPos, slidesCount);
 
 					if (counter) {
-						var $slideCounter = $('<div class="carousel_counter" />');
+						var $slideCounter = $('<div class="carousel__counter" />');
 						$this.append($slideCounter);
 
 						var updateSlideCounter = function(slideIndex) {
@@ -107,14 +107,14 @@ var slider = (function() {
 					}
 
 					if (pager) {
-						var $navPager = $('<ul class="carousel_nav_pager' + (thumbnails ? ' carousel_nav_pager--thumbnails' : '') + ' reset menu" />');
+						var $navPager = $('<ul class="carousel__pager' + (thumbnails ? ' carousel__pager--thumbnails' : '') + ' reset menu" />');
 						$this.append($navPager);
 					}
 
 					if (nav) {
-						var $navContainer = $('<div class="carousel_nav" />'),
-							$navPrev = $('<a href="#previous" class="carousel_nav_item carousel_nav_item--prev"><span>Previous</span></a>'),
-							$navNext = $('<a href="#next" class="carousel_nav_item carousel_nav_item--next"><span>Next</span></a>');
+						var $navContainer = $('<div class="carousel__nav" />'),
+							$navPrev = $('<a href="#previous" class="carousel__nav_item carousel__nav_item--prev"><span>Previous</span></a>'),
+							$navNext = $('<a href="#next" class="carousel__nav_item carousel__nav_item--next"><span>Next</span></a>');
 
 						$navContainer.append($navPrev).append($navNext)
 						$this.append($navContainer);
@@ -141,9 +141,9 @@ var slider = (function() {
 						if (pager) {
 							for (var i = 1; i <= slidesCount; i++) {
 								if (thumbnails)
-									li += '<li class="reset carousel_nav_pager_item"><a href="#slide-' + i + '">' + ($slides.eq(i - 1).data('pager-thumbnail') ? '<img src="' + $slides.eq(i - 1).data('pager-thumbnail') + '" alt="Slide ' + i + '" />' : 'Slide ' + i) + '</a></li>';
+									li += '<li class="reset carousel__pager_item"><a href="#slide-' + i + '">' + ($slides.eq(i - 1).data('pager-thumbnail') ? '<img src="' + $slides.eq(i - 1).data('pager-thumbnail') + '" alt="Slide ' + i + '" />' : 'Slide ' + i) + '</a></li>';
 								else
-									li += '<li class="reset carousel_nav_pager_item"><a href="#slide-' + i + '">Slide ' + i + '</a></li>';
+									li += '<li class="reset carousel__pager_item"><a href="#slide-' + i + '">Slide ' + i + '</a></li>';
 							}
 
 							$navPager.append(li);
@@ -195,8 +195,8 @@ var slider = (function() {
 
 								if (pager) {
 									$navPagerLi
-										.removeClass('carousel_nav_pager_item--is_current')
-										.eq(pos).addClass('carousel_nav_pager_item--is_current');
+										.removeClass('carousel__pager_item--is_current')
+										.eq(pos).addClass('carousel__pager_item--is_current');
 								}
 
 								if (counter)
@@ -246,8 +246,8 @@ var slider = (function() {
 									slider.lazyLoad($imagesLazy, idx);
 									carousel.slide(idx);
 
-									$navPagerLi.removeClass('carousel_nav_pager_item--is_current');
-									$parent.addClass('carousel_nav_pager_item--is_current');
+									$navPagerLi.removeClass('carousel__pager_item--is_current');
+									$parent.addClass('carousel__pager_item--is_current');
 
 									stopCarousel();
 								});
@@ -260,7 +260,7 @@ var slider = (function() {
 
 						if (interval) {
 							var timer = window.setInterval(autoCarousel, interval),
-								$tile = $this.find('.carousel_tile');
+								$tile = $this.find('.carousel__tile');
 
 							$tile.hover(
 								function(e) {
@@ -294,7 +294,7 @@ var slider = (function() {
 							widthOverride = 'width: 100% !important',
 
 							cycleOpts = {
-								activePagerClass: 'carousel_nav_pager_item--is_current',
+								activePagerClass: 'carousel__pager_item--is_current',
 								cleartypeNoBg: true,
 								easing: 'easeInOutQuint',
 								fx: 'scrollHorz',
@@ -334,9 +334,9 @@ var slider = (function() {
 							cycleOpts.pager = '#nav_pager-' + index;
 							cycleOpts.pagerAnchorBuilder = function(idx, slide) {
 								if (thumbnails)
-									return '<li class="reset carousel_nav_pager_item"><a href="#slide-' + (idx + 1) + '">' + ($slides.eq(idx).data('pager-thumbnail') ? '<img src="' + $slides.eq(idx).data('pager-thumbnail') + '" alt="Slide ' + (idx + 1) + '" />' : 'Slide ' + (idx + 1)) + '</a></li>';
+									return '<li class="reset carousel__pager_item"><a href="#slide-' + (idx + 1) + '">' + ($slides.eq(idx).data('pager-thumbnail') ? '<img src="' + $slides.eq(idx).data('pager-thumbnail') + '" alt="Slide ' + (idx + 1) + '" />' : 'Slide ' + (idx + 1)) + '</a></li>';
 								else
-									return '<li class="reset carousel_nav_pager_item"><a href="#slide-' + (idx + 1) + '">Slide ' + (idx + 1) + '</a></li>';
+									return '<li class="reset carousel__pager_item"><a href="#slide-' + (idx + 1) + '">Slide ' + (idx + 1) + '</a></li>';
 							};
 						}
 
