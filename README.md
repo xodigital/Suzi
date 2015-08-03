@@ -167,7 +167,7 @@ var moduleName = (function() {
 
 * `grid-override($name, $gutter, $media-query: false)`
 
-	Outputs `$name_`--suffixed `.grid` and `.grid__item` modifier classes to override standard grid styles with.
+	Outputs `.grid` and `.grid__item` modifier classes to override standard grid styles with.
 
 	* `$name`: The suffix to use for `.grid` and `.grid__item` classes. For instance, `$name: small` produces `.grid--small` and `.grid__item--small`
 	* `$gutter`: The new gutter value for the relevant `margin` and `padding` properties for these grid override classes
