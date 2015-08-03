@@ -80,6 +80,14 @@
 	text-align: center;
 }
 
+.carousel__counter {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+}
+
  .carousel__pager_item {
 	display: inline-block;
 	@include rem(margin, 0 5px);
