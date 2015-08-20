@@ -25,7 +25,7 @@ var slider = (function() {
 				if ($slider.length === 0 || $slides.length === 0)
 					return;
 
-				if (slider.swipejs && circular) {
+				if (slider.swipejs && circular && slidesCount > 1) {
 					$slides.eq(0).clone().appendTo($slider);
 					$slides.eq(slidesCount - 1).clone().prependTo($slider);
 					$slides = $slider.find('> li'),
