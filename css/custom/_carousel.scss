@@ -88,7 +88,7 @@
 	text-align: center;
 }
 
- .carousel__pager_item {
+.carousel__pager_item {
 	display: inline-block;
 	@include rem(margin, 0 5px);
 	 
@@ -98,7 +98,7 @@
 		@include border-radius(50%);
 		@include hide-text(false, 14px, 14px);
 	}
- }
+}
 
 .carousel__pager_item--is_current {
 	a {
