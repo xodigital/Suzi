@@ -8,8 +8,8 @@ var accordion = (function() {
 
 			$accordion.each(function(index) {
 				var $this = $(this),
-					$accordionLinks = $this.find('> ul > li > .accordion_toggler'),
-					$accordionContent = $this.find('> ul > li > .accordion_content'),
+					$accordionLinks = $this.find('> ul > li > .accordion__toggler'),
+					$accordionContent = $this.find('> ul > li > .accordion__content'),
 					multiple = $this.data('multiple'),
 					accordionID = 'accordionid-' + window.location.pathname + '-' + index,
 					accordionHasCookie = multiple ? false : $this.data('cookie'),
@@ -30,22 +30,22 @@ var accordion = (function() {
 
 					if (!multiple || accordionHasCookie) {
 						if (!accordionHasCookie) {
-							if ($this.hasClass('accordion_toggler--to_open'))
+							if ($this.hasClass('accordion__toggler--to_open'))
 								accordionCookie = idx;
 						}
 
 						if (parseInt(accordionCookie) === idx) {
-							$accordionLinks.removeClass('accordion_toggler--is_open');
+							$accordionLinks.removeClass('accordion__toggler--is_open');
 							$accordionContent.attr('aria-hidden', true).css('height', '0');
 
-							$this.addClass('accordion_toggler--is_open');
+							$this.addClass('accordion__toggler--is_open');
 
 							$accordionContentIndex.attr('aria-hidden', false).css('height', 'auto');
 						}
 					}
 					else {
-						if ($this.hasClass('accordion_toggler--to_open')) {
-							$this.removeClass('accordion_toggler--to_open').addClass('accordion_toggler--is_open');
+						if ($this.hasClass('accordion__toggler--to_open')) {
+							$this.removeClass('accordion__toggler--to_open').addClass('accordion__toggler--is_open');
 
 							$accordionContentIndex.attr('aria-hidden', false).css('height', 'auto');
 
@@ -65,7 +65,7 @@ var accordion = (function() {
 							ariaHidden = false;
 
 						if (!multiple) {
-							$accordionLinks.removeClass('accordion_toggler--to_open accordion_toggler--is_open');
+							$accordionLinks.removeClass('accordion__toggler--to_open accordion__toggler--is_open');
 
 							$accordionContent.each(function(index) {
 								if (index === idx)
@@ -74,10 +74,10 @@ var accordion = (function() {
 									$(this).attr('aria-hidden', true).transition({height: 0}, transitionDuration, transitionTimingFunction);
 							});
 
-							$this.addClass('accordion_toggler--is_open');
+							$this.addClass('accordion__toggler--is_open');
 						}
 						else {
-							$this.toggleClass('accordion_toggler--is_open');
+							$this.toggleClass('accordion__toggler--is_open');
 
 							if ($accordionContentSibling.attr('aria-hidden') == 'false') {
 								ariaHidden = true;
@@ -95,7 +95,7 @@ var accordion = (function() {
 				});
 			});
 
-			transition.overrideDefault('.accordion_content');
+			transition.overrideDefault('.accordion__content');
 		}
 	};
 })();

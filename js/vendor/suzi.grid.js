@@ -14,8 +14,8 @@
 		css: '',
 		
 		setup: function(refresh) {
-			var gridContainers = Array.prototype.slice.call(document.getElementsByClassName('grid_container')),
-				gridItems = Array.prototype.slice.call(document.getElementsByClassName('grid_item')),
+			var gridContainers = Array.prototype.slice.call(document.getElementsByClassName('grid')),
+				gridItems = Array.prototype.slice.call(document.getElementsByClassName('grid__item')),
 				widthsArray = [],
 				uniqueWidths,
 				widthsAtArray = [],
@@ -39,11 +39,11 @@
 			if (gridContainers.length === 0)
 				return;
 			
-			css =	'.grid_container {\n' +
+			css =	'.grid {\n' +
 						'list-style: none;\n' +
 					'}\n' +
 					
-					'.grid_container:after {\n' +
+					'.grid:after {\n' +
 						'clear: both;\n' +
 						'content: ".";\n' +
 						'display: block;\n' +
@@ -51,7 +51,7 @@
 						'visibility: hidden;\n' +
 					'}\n' +
 					
-					'.grid_item {' +
+					'.grid__item {' +
 						'-moz-box-sizing: border-box;\n' +
 						'-webkit-box-sizing: border-box;\n' +
 						'box-sizing: border-box;\n' +
@@ -214,11 +214,11 @@
 				
 			var styleGutter = document.createElement('style'),
 				style = document.createElement('style'),
-				gutterCss = '.grid_container {\n' +
+				gutterCss = '.grid {\n' +
 								'margin-left: -99px;\n' +
 							'}\n' +
 							
-							'.grid_item {' +
+							'.grid__item {' +
 								'margin-bottom: 99px;\n' +
 								'padding-left: 99px;\n' +
 							'}\n';

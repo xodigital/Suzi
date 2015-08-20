@@ -30,7 +30,7 @@
 	List Bullet Removal & Display None
 ----------------------------------------------- */
 
-input[type="hidden"], .no_col-1 #col_1, .no_col-3 #col_3, .grid_container > li.grid_item:before, .list_style-none > li:before, .radio_checkbox_group li:before, .reset:before, .reset--all li:before, .reset--immediate > li:before {
+input[type="hidden"], .no_col-1 #col_1, .no_col-3 #col_3, .grid > li.grid__item:before, .list_style-none > li:before, .radio_checkbox_group li:before, .reset:before, .reset--all li:before, .reset--immediate > li:before {
 	@extend %display-none;
 }
 
@@ -896,12 +896,12 @@ button, [type="submit"] {
 	}
 }
 
-.accordion_toggler {
+.accordion__toggler {
 	display: block;
 	text-decoration: none;
 }
 
-.accordion_content {
+.accordion__content {
 	.js & {
 		height: 0;
 		overflow: hidden;

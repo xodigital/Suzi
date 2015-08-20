@@ -28,15 +28,15 @@
 	position: relative;
 }
 
-.carousel_tile {
+.carousel__tile {
 	height: 100%;
 	position: relative;
 }
 
-.carousel_nav {
+.carousel__nav {
 }
 
-.carousel_nav_item {
+.carousel__nav_item {
 	@include rgba-background((#000, #666), .57);
 	bottom: 0;
 	left: 0;
@@ -62,7 +62,7 @@
 	}
 }
 
-.carousel_nav_item--next {
+.carousel__nav_item--next {
 	left: auto;
 	right: 0;
 	
@@ -71,7 +71,7 @@
 	}
 }
 
-.carousel_nav_pager {
+.carousel__pager {
 	bottom: 13px;
 	left: 0;
 	opacity: 0.7;
@@ -80,7 +80,15 @@
 	text-align: center;
 }
 
- .carousel_nav_pager_item {
+.carousel__counter {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+}
+
+ .carousel__pager_item {
 	display: inline-block;
 	@include rem(margin, 0 5px);
 	 
@@ -92,11 +100,11 @@
 	}
  }
 
-.carousel_nav_pager_item--is_current {
+.carousel__pager_item--is_current {
 	a {
 		background: #fff;
 	}
 }
 
-.carousel_nav_pager--thumbnails {
+.carousel__pager--thumbnails {
 }

@@ -1,4 +1,4 @@
-.accordion_content {
+.accordion__content {
 	.js & {
 		@include transition(height ease 0.7s);
 	}
@@ -14,18 +14,18 @@ $accordion-to-tabs-bp: 680px;
 			display: inline;
 		}
 		
-		.accordion_content {
+		.accordion__content {
 			float: left;
 			width: 100%;
 		}
 		
-		.accordion_toggler--is_open + .accordion_content {
+		.accordion__toggler--is_open + .accordion__content {
 			height: auto !important;
 		}
 	}
 }
 
-.accordion_toggler {
+.accordion__toggler {
 	.accordion--to_tabs & {
 		@include media-query($accordion-to-tabs-bp) {
 			display: inline-block;
