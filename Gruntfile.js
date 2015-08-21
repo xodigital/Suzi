@@ -9,10 +9,12 @@ module.exports = function (grunt) {
 				builds: '<%= globalConfig.path.html.src %>/builds',
 				includes: '<%= globalConfig.path.html.src %>/_includes'
 			},
-			// Add additional src dirs for the "developed" templates
 			cachebust: [
 				'<%= globalConfig.path.html.includes %>/foot.html',
 				'<%= globalConfig.path.html.includes %>/head.html'
+
+				// Add additional src dirs for the "developed" templates
+				
 			],
 			css: {
 				src: 'css',
