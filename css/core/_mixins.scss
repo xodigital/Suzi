@@ -472,33 +472,11 @@ $rem-with-px-fallback: true !default;
 	}
 }
 
-@mixin _grid-clearing($pc) {
-	$fraction: 100 / $pc;
-	
-	@if ((floor($pc) == 33) or (round($fraction) == $fraction and ($fraction > 1 and $fraction < 6))) {
-		&:nth-child(n) {
-			clear: none;
-		}
-		
-		@if (floor($pc) == 33) {
-			&:nth-child(3n+4) {
-				clear: both;
-			}
-		}
-		@else {
-			&:nth-child(#{$fraction}n+#{1 + $fraction}) {
-				clear: both;
-			}
-		}
-	}
-}
-
-@mixin grid($breakpoints: (480, 600, 768, 960), $percentages: (10, 20, 25, 30, 33.3333, 40, 50, 60, 66.6666, 70, 75, 80, 90, 100), $float-classes: false) {
+@mixin grid($breakpoints: (480, 600, 768, 960), $percentages: (10, 20, 25, 30, 33.3333, 40, 50, 60, 66.6666, 70, 75, 80, 90, 100)) {
 	$bp: '';
 	$pc: '';
 	
 	.grid {
-		@extend %clearfix;
 		list-style: none;
 		margin-bottom: 0;
 		margin-left: -$std-gutter;
@@ -506,9 +484,10 @@ $rem-with-px-fallback: true !default;
 	
 	.grid__item {
 		@include box-sizing;
-		float: left;
+		display: inline-block;
 		margin-bottom: $std-gutter;
 		padding-left: $std-gutter;
+		vertical-align: top;
 		width: 100%;
 	}
 	
@@ -517,31 +496,11 @@ $rem-with-px-fallback: true !default;
 		
 		.width-#{floor($pc)} {
 			width: percentage($pc / 100);
-			
-			@include _grid-clearing($pc);
 		}
-	}
-	
-	.clear-both:nth-child(n) {
-		clear: both;
-	}
-	
-	.clear-none:nth-child(n) {
-		clear: none;
 	}
 	
 	.mb-no.mb-no {
 		margin-bottom: 0;
-	}
-	
-	@if ($float-classes == true) {
-		.float-left {
-			float: left;
-		}
-		
-		.float-right {
-			float: right;
-		}
 	}
 	
 	@if ($is-responsive == true) {
@@ -554,41 +513,13 @@ $rem-with-px-fallback: true !default;
 				.at_#{$bp}-width-#{floor($pc)} {
 					@include media-query($bp) {
 						width: percentage($pc / 100);
-						
-						@include _grid-clearing($pc);
 					}
 				}
 				
-				@if ($j == length($percentages) - 1) {
-					.at_#{$bp}-clear-both:nth-child(n) {
-						@include media-query($bp) {
-							clear: both;
-						}
-					}
-					
-					.at_#{$bp}-clear-none:nth-child(n) {
-						@include media-query($bp) {
-							clear: none;
-						}
-					}
-					
+				@if ($j == length($percentages) - 1) {				
 					.at_#{$bp}-mb-no.at_#{$bp}-mb-no {
 						@include media-query($bp) {
 							margin-bottom: 0;
-						}
-					}
-					
-					@if ($float-classes == true) {
-						.at_#{$bp}-float-left {
-							@include media-query($bp) {
-								float: left;
-							}
-						}
-						
-						.at_#{$bp}-float-right {
-							@include media-query($bp) {
-								float: right;
-							}
 						}
 					}
 				}
