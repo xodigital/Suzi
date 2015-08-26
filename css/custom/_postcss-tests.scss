@@ -1,0 +1,105 @@
+@keyframes MyAnimation {
+		0% { left: 0; }	
+	 50% { left: 200px; }	
+	100% { left: 20px; }	
+}
+
+.auto_prefixer_test {
+	column-count: 2;
+	column-gap: 10px;
+	column-rule: 1px solid #000;
+	mask-image: url(mask.png);
+	filter: grayscale(50%);
+	animation: MyAnimation 2s;
+}
+
+.auto_prefixer_transform {
+	transform: translateX(50px) rotate(30deg);
+	transition: transform ease .3s .2s;
+}
+
+.suzi_transform {
+	@include transform(translateX(50px) rotate(30deg));
+	@include transition(transform ease .3s .2s);
+}
+
+.auto_prefixer_gradient {
+	background: linear-gradient(to-left, lighten($std-table-color, 10%) 0%, darken($std-table-color, 1%) 100%);
+	font-weight: bold;
+}
+
+.suzi_gradient_linear {
+	@include gradient((#fff, 0%, #ddd, 100%), to top);
+}
+
+.suzi_gradient_repeating {
+	@include gradient((#fff, 0%, #ddd, 100%), to top, true);
+}
+
+.flex {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.flex-wrap {
+	flex-wrap: nowrap;
+}
+
+.flex-grow {
+  flex-grow: 2;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+.flex-basis {
+  flex-basis: width;
+}
+
+.flex_shorthand {
+	flex: 1 2 0;
+}
+
+.flex-flow {
+	flex-flow: row;
+}
+
+.flex-inline {
+	display: inline-flex;
+}
+
+.justify-content {
+	justify-content: flex-start;
+}
+
+.align-content {
+	align-content: space-between;
+}
+
+.align-items {
+	align-items: stretch;
+}
+
+.align-self {
+	align-self: stretch;
+}
+
+.flex-col2 {
+  order: 2;
+  width: 60%;
+}
+
+.flex-col1,
+.flex-col3 {
+  flex: 1;
+  width: 20%;
+}
+
+.flex-col1 {
+  order: 1;
+}
+
+.flex-col3 {
+  order: 3;
+}
