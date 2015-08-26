@@ -95,6 +95,20 @@ module.exports = function (grunt) {
 			}
 		},
 
+		postcss: {
+			options: {
+				processors: [
+					require('autoprefixer-core')({
+						// add vendor prefixes
+						browsers: '> 1%, ie >= 8'
+					}),
+				]
+			},
+			dist: {
+				src: '<%= globalConfig.path.css.dist %>/*.css'
+			}
+		},
+
 		modernizr: {
 			dist: {
 				devFile: 'remote',
@@ -358,7 +372,7 @@ module.exports = function (grunt) {
 		watch: {
 			css: {
 				files: ['<%= globalConfig.path.css.src %>/**/*.scss'],
-				tasks: ['sass:dist', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'modernizr'],
+				tasks: ['sass:dist', 'postcss', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'modernizr'],
 				options: {
 					spawn: false,
 				}
@@ -403,7 +417,7 @@ module.exports = function (grunt) {
 		watchdev: {
 			css: {
 				files: ['<%= globalConfig.path.css.src %>/**/*.scss'],
-				tasks: ['sass:dev', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'modernizr'],
+				tasks: ['sass:dev', 'postcss', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'modernizr'],
 				options: {
 					spawn: false,
 				}
@@ -475,12 +489,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-browser-sync');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-html');
-
+	grunt.loadNpmTasks('grunt-postcss');
 
 	grunt.registerTask('default', ['build']);
 
-	grunt.registerTask('build', ['sass:dist', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
-	grunt.registerTask('dev', ['sass:dev', 'regex-replace:cssimages', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
+	grunt.registerTask('build', ['sass:dist', 'postcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
+	grunt.registerTask('dev', ['sass:dev', 'postcss', 'regex-replace:cssimages', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
 	grunt.registerTask('bust', ['regex-replace:cachebustcss', 'regex-replace:cachebustjs']);
 	grunt.registerTask('validate', ['htmllint']);
 	grunt.registerTask('version', ['regex-replace:version']);
