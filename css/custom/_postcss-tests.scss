@@ -103,3 +103,72 @@
 .flex-col3 {
   order: 3;
 }
+
+.animation {
+	animation: default 1s ease;
+}
+
+.animation-delay {
+	animation-delay: 1s;
+}
+
+.animation-direction {
+	animation-direction: normal;
+}
+.animation-duration {
+	animation-duration: 1s;
+}
+
+.animation-fill-mode {
+	animation-fill-mode: none;
+}
+
+.animation-iteration-count {
+	animation-iteration-count: 1;
+}
+
+.animation-name {
+	animation-name: aniName;
+}
+
+.animation-timing-function {
+	animation-timing-function: ease;
+}
+
+@mixin border-radius($radius: 5px, $background-clip: padding-box) {
+	@if ($background-clip != false) {
+		background-clip: $background-clip;
+	}
+	
+	-webkit-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin box-shadow($shadow: 0 1px 3px rgba(0,0,0,.25)) {
+	-webkit-box-shadow: $shadow;
+	box-shadow: $shadow;
+}
+
+@mixin box-sizing($boxsize: border-box) {
+	-moz-box-sizing: $boxsize;
+	-webkit-box-sizing: $boxsize;
+	box-sizing: $boxsize;
+}
+
+@mixin keyframes($name) {
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	
+	@-o-keyframes #{$name} {
+		@content;
+	}
+	
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	
+	@keyframes #{$name} {
+		@content;
+	}
+}

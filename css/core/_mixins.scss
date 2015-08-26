@@ -869,54 +869,6 @@ $rem-with-px-fallback: true !default;
 $trans-anim-prefixes: (-moz-, -o-, -webkit-, ''); // Not used in keyframes()
 $transitionable-prefixed-values: transform, transform-origin;
 
-@mixin animation($property: default 1s ease) {
-	// name duration timing-function delay direction iteration-count fill-mode
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}animation: $property;
-	}
-}
-
-@mixin animation-delay($value: 1s) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}animation-delay: $value;
-	}
-}
-
-@mixin animation-direction($value: normal) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}animation-direction: $value;
-	}
-}
-@mixin animation-duration($value: 1s) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}animation-duration: $value;
-	}
-}
-
-@mixin animation-fill-mode($value: none) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}animation-fill-mode: $value;
-	}
-}
-
-@mixin animation-iteration-count($value: 1) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}animation-iteration-count: $value;
-	}
-}
-
-@mixin animation-name($value: default) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}animation-name: $value;
-	}
-}
-
-@mixin animation-timing-function($value: ease) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}animation-timing-function: $value;
-	}
-}
-
 @mixin background($color, $duplicate-as-pie: false) {
 	background: $color;
 	@if ($use-pie-background == true and $duplicate-as-pie == true) {
@@ -954,24 +906,6 @@ $transitionable-prefixed-values: transform, transform-origin;
 	
 	@if ($line-height != false) {
 		@include line-height($line-height, $font-size, $important)
-	}
-}
-
-@mixin keyframes($name) {
-	@-moz-keyframes #{$name} {
-		@content;
-	}
-	
-	@-o-keyframes #{$name} {
-		@content;
-	}
-	
-	@-webkit-keyframes #{$name} {
-		@content;
-	}
-	
-	@keyframes #{$name} {
-		@content;
 	}
 }
 
