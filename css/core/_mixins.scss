@@ -449,16 +449,13 @@ $rem-with-px-fallback: true !default;
 		
 		@if ($repeating == false) {
 			background-image: url('data:image/svg+xml;base64,' + base64Encode($svg));
-			#{$background}: -moz-linear-gradient($lgy-direction $css);
-			#{$background}: -webkit-linear-gradient($lgy-direction $css);
 			#{$background}: linear-gradient($std-direction $css);
+			
 			@if ($use-pie-background == true) {
 				-pie-background: linear-gradient($lgy-direction $css);
 			}
 		}
 		@else {
-			#{$background}: -moz-linear-gradient($lgy-direction $css);
-			#{$background}: -webkit-repeating-linear-gradient($lgy-direction $css);
 			#{$background}: repeating-linear-gradient($std-direction $css);
 		}
 	}
