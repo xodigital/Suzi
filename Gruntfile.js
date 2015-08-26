@@ -100,7 +100,7 @@ module.exports = function (grunt) {
 				processors: [
 					require('autoprefixer-core')({
 						// add vendor prefixes
-						browsers: '> 1%, ie >= 8'
+						browsers: '> 0.01%, Firefox >= 15, Safari >= 6, ie >= 8'
 					}),
 				]
 			},
