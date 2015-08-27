@@ -916,7 +916,7 @@ button, [type="submit"] {
 	}
 	
 	.accordion--to_tabs & {
-		@include transition(none !important);
+		transition: none !important;
 	}
 }
 

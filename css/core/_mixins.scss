@@ -866,9 +866,6 @@ $rem-with-px-fallback: true !default;
 //	CSS Property Mixins
 // --------------------------------------------
 
-$trans-anim-prefixes: (-moz-, -o-, -webkit-, ''); // Not used in keyframes()
-$transitionable-prefixed-values: transform, transform-origin;
-
 @mixin background($color, $duplicate-as-pie: false) {
 	background: $color;
 	@if ($use-pie-background == true and $duplicate-as-pie == true) {
@@ -980,95 +977,6 @@ $transitionable-prefixed-values: transform, transform-origin;
 	}
 	
 	#{$property}: rgba($rgba, $opacity);
-}
-
-@mixin transform($transform-function: none) {
-	$additional-trans-anim-prefixes: join(-ms-, $trans-anim-prefixes);
-	@for $i from 0 to length($additional-trans-anim-prefixes) {
-		#{nth($additional-trans-anim-prefixes, ($i + 1))}transform: $transform-function;
-	}
-}
-
-@mixin transform-origin($transform-origin: 50% 50% 0) {
-	$additional-trans-anim-prefixes: join(-ms-, $trans-anim-prefixes);
-	@for $i from 0 to length($additional-trans-anim-prefixes) {
-		#{nth($additional-trans-anim-prefixes, ($i + 1))}transform-origin: $transform-origin;
-	}
-}
-
-@mixin transition($property: all ease 0.2s) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		$combined-property: ();
-		
-		@for $j from 0 to length($property) {
-			$prop: nth($property, ($j + 1));
-			$prop-length: length($prop);
-			$prefixed-property: ();
-				
-			@for $k from 0 to length($prop) {
-				$item: nth($prop, ($k + 1));
-				
-				@if ($prop-length != 1) {
-					@if (($k + 1) == $prop-length and ($j + 1) != length($property)) {
-						$item: $item+ ',';
-						$item: unquote($item);
-					}
-				}
-				
-				@if ($item == nth($transitionable-prefixed-values, 1)) {
-					$prefixed-property: append($prefixed-property, #{nth($trans-anim-prefixes, ($i + 1))}#{$item}, space);
-				}
-				@else if ($item == nth($transitionable-prefixed-values, 2)) {
-					$prefixed-property: append($prefixed-property, #{nth($trans-anim-prefixes, ($i + 1))}#{$item}, space);
-				}
-				@else {
-					$prefixed-property: append($prefixed-property, $item, space);
-				}
-			}
-			
-			$combined-property: join($combined-property, $prefixed-property);
-		}
-		
-		#{nth($trans-anim-prefixes, ($i + 1))}transition: $combined-property;
-	}
-}
-
-@mixin transition-delay($delay: 0.2s) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}transition-delay: $delay;
-	}
-}
-
-@mixin transition-duration($duration: 0.2s) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}transition-duration: $duration;
-	}
-}
-
-@mixin transition-property($property: all) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		$prefixed-property: ();
-		
-		@each $prop in $property {
-			@if ($prop == nth($transitionable-prefixed-values, 1)) {
-				$prefixed-property: append($prefixed-property, #{nth($trans-anim-prefixes, ($i + 1))}#{$prop}, comma);
-			}
-			@else if ($prop == nth($transitionable-prefixed-values, 2)) {
-				$prefixed-property: append($prefixed-property, #{nth($trans-anim-prefixes, ($i + 1))}#{$prop}, comma);
-			}
-			@else {
-				$prefixed-property: append($prefixed-property, $prop, comma);
-			}
-		}
-		
-		#{nth($trans-anim-prefixes, ($i + 1))}transition-property: $prefixed-property;
-	}
-}
-
-@mixin transition-timing-function($timing: ease) {
-	@for $i from 0 to length($trans-anim-prefixes) {
-		#{nth($trans-anim-prefixes, ($i + 1))}transition-timing-function: $timing;
-	}
 }
 
 @mixin viewport($width: device-width) {

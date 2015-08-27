@@ -3,10 +3,10 @@
 ----------------------------------------------- */
 
 .slider {
-	@include transition-timing-function($ease-in-out-quint);
+	transition-timing-function: $ease-in-out-quint;
 	
 	.window_is_resizing & {
-		@include transition-duration(0s !important);
+		transition-duration: 0s !important;
 	}
 	
 	> li {
