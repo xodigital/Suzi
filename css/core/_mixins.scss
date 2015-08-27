@@ -480,7 +480,7 @@ $rem-with-px-fallback: true !default;
 	}
 	
 	.grid__item {
-		@include box-sizing;
+		box-sizing: border-box;
 		display: inline-block;
 		margin-bottom: $std-gutter;
 		padding-left: $std-gutter;
@@ -885,12 +885,6 @@ $rem-with-px-fallback: true !default;
 @mixin box-shadow($shadow: 0 1px 3px rgba(0,0,0,.25)) {
 	-webkit-box-shadow: $shadow;
 	box-shadow: $shadow;
-}
-
-@mixin box-sizing($boxsize: border-box) {
-	-moz-box-sizing: $boxsize;
-	-webkit-box-sizing: $boxsize;
-	box-sizing: $boxsize;
 }
 
 @mixin font-size-line-height($font-size, $line-height: false, $important: false) {

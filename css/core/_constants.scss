@@ -337,7 +337,7 @@ pre {
 }
 
 .std_width {
-	@include box-sizing;
+	box-sizing: border-box;
 	margin: auto;
 	@include rem(max-width, $site-width);
 }
@@ -678,7 +678,7 @@ input {
 }
 
 .btn, button, [type="submit"], .input-text, label, .label, .radio_checkbox_group_legend, select, textarea {
-	@include box-sizing;
+	box-sizing: border-box;
 	display: block;
 	font-family: $std-font-family;
 	line-height: normal;
