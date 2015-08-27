@@ -882,11 +882,6 @@ $rem-with-px-fallback: true !default;
 	border-radius: $radius;
 }
 
-@mixin box-shadow($shadow: 0 1px 3px rgba(0,0,0,.25)) {
-	-webkit-box-shadow: $shadow;
-	box-shadow: $shadow;
-}
-
 @mixin font-size-line-height($font-size, $line-height: false, $important: false) {
 	@if ($important == true) {
 		@include rem(font-size, $font-size !important);

@@ -581,7 +581,7 @@ td, th {
 }
 
 .table-unstyled {
-	@include box-shadow(none);
+	box-shadow: none;
 	width: auto;
 	
 	& td, & th {
@@ -647,7 +647,7 @@ input[type="search"] {
 		
 		&:focus {
 			background-color: $form-input-focus-color;
-			@include box-shadow(0 0 6px $form-input-boxshadow-color);
+			box-shadow: 0 0 6px $form-input-boxshadow-color;
 			outline: none;
 		}
 	}
@@ -664,7 +664,7 @@ input[type="search"] {
 input {
 	&[type="radio"], &[type="checkbox"] {
 		&.form_error {
-			@include box-shadow(0 0 1.5px 1.5px lighten($form-input-error-color, 10%));
+			box-shadow: 0 0 1.5px 1.5px lighten($form-input-error-color, 10%);
 		}
 		
 		&.form_error + label {

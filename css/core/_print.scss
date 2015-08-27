@@ -17,7 +17,7 @@
 *, :before, :after {
 	background: none !important;
 	behavior: none !important;
-	@include box-shadow(none !important);
+	box-shadow: none !important;
 }
 
 ul {
