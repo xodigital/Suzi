@@ -653,25 +653,9 @@ $rem-with-px-fallback: true !default;
 }
 
 @mixin placeholder($color: $form-placeholder-color, $text-transform: $form-placeholder-text-transform) {
-	:-moz-placeholder {
+	::placeholder {
 		color: $color;
 		opacity: 1;
-		text-transform: $text-transform;
-	}
-	
-	::-moz-placeholder {
-		color: $color;
-		opacity: 1;
-		text-transform: $text-transform;
-	}
-	
-	:-ms-input-placeholder {
-		color: $color;
-		text-transform: $text-transform;
-	}
-	
-	::-webkit-input-placeholder {
-		color: $color;
 		text-transform: $text-transform;
 	}
 	
@@ -680,15 +664,7 @@ $rem-with-px-fallback: true !default;
 		text-transform: $text-transform;
 	}
 	
-	label + [placeholder]:focus:-moz-placeholder {
-		color: transparent;
-	}
-	
-	label + [placeholder]:focus::-moz-placeholder {
-		color: transparent;
-	}
-	
-	label + [placeholder]:focus::-webkit-input-placeholder {
+	label + [placeholder]:focus::placeholder {
 		color: transparent;
 	}
 }
