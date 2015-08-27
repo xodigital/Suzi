@@ -95,7 +95,7 @@
 	a {
 		background: #ddd;
 		border: 1px solid #aaa;
-		@include border-radius(50%);
+		border-radius: 50%;
 		@include hide-text(false, 14px, 14px);
 	}
 }

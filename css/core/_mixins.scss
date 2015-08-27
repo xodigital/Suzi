@@ -873,15 +873,6 @@ $rem-with-px-fallback: true !default;
 	}
 }
 
-@mixin border-radius($radius: 5px, $background-clip: padding-box) {
-	@if ($background-clip != false) {
-		background-clip: $background-clip;
-	}
-	
-	-webkit-border-radius: $radius;
-	border-radius: $radius;
-}
-
 @mixin font-size-line-height($font-size, $line-height: false, $important: false) {
 	@if ($important == true) {
 		@include rem(font-size, $font-size !important);

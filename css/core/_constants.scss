@@ -710,7 +710,7 @@ em {
 }
 
 .input-text, textarea {
-	@include border-radius($form-input-border-radius);
+	border-radius: $form-input-border-radius;
 }
 
 .input-text:not(.date_time) {
@@ -803,7 +803,7 @@ textarea {
 
 .btn, button, [type="submit"] {
 	-webkit-appearance: none;
-	@include border-radius($btn-border-radius);
+	border-radius: $btn-border-radius;
 	color: $btn-text-color;
 	cursor: pointer;
 	display: inline-block;
@@ -831,7 +831,7 @@ button, [type="submit"] {
 
 .confirmation_panel {
 	border: 1px solid $error-border-color;
-	@include border-radius(8px);
+	border-radius: 8px;
 	@include rem(padding, 15px);
 	
 	& ul {

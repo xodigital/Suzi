@@ -65,7 +65,7 @@ sup {
 ul > li {
 	&:before {
 		background: $text-color;
-		@include border-radius(50%);
+		border-radius: 50%;
 		height: 5px;
 		left: -18px;
 		@include rem(top, $list-bullet-top);
