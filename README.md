@@ -2,7 +2,7 @@
 
 ## A responsive, Sass and Grunt UI Framework by [Matt Stow](http://mattstow.com)
 
-### v2.2.0 (2015-08-21)
+### v3.0.0 (2015-09-07)
 
 Suzi is the starting point for all of our web projects and a culmination of 6+ years' experience in maintaining a front-end framework.
 
