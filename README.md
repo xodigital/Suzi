@@ -9,20 +9,21 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 ### Features
 
 * Built in a mobile-first, responsive philosophy *(but can easily be used for fixed sites as well)*
-* Mixins for lots of CSS3 features including gradients with SVG & CSS3PIE support, rems with pixel fallbacks, correctly-prefixed transitioned transforms and CSS triangles
+* HTML templating using [grunt-twigger](https://github.com/noisysocks/grunt-twigger)
+* Automatically generated vendor prefixes for CSS using Autoprefixer PostCSS - [grunt-postcss](https://github.com/nDmitry/grunt-postcss)
+* BrowserSync for automatic live-reloading of changes & synchronised browser testing
+* BEM naming methodology with single underscores instead of single dashes for long class names: `.block_name--modifier`, `.block_name__element` & `.function_or_feature_name-variant`
 * Starter content styles, including clean typography, lists, tables, etc
 * Starter form element styles: stacked on small-screen to 2-column at the breakpoint of your choice
 * Simple form validation
-* Responsive, lazy-loaded, touch-friendly carousels with optional navigation & pagination, analytics tracking & cookie-based remembering of last visible slide
 * Simple, accessible JavaScript tabs with cookie-based remembering of the open pane
 * Simple, accessible JavaScript accordions which transition to and from `height: auto`, and support multiple open panes
-* HTML templating using [grunt-twigger](https://github.com/noisysocks/grunt-twigger)
+* Gradients with SVG & CSS3PIE support, rems with pixel fallbacks and CSS triangles
+* Responsive, lazy-loaded, touch-friendly carousels with optional navigation & pagination, analytics tracking & cookie-based remembering of last visible slide
 * Concatenation and minification of CSS and JS files with [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) and [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) (unless running `grunt dev`)
-* BrowserSync for automatic live-reloading of changes & synchronised browser testing
 * Cache busting of CSS and JS assets with a unique timestamp querystring
 * Optimising of images and SVGs with [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
 * HTML validation
-* OOCSS naming convention: .component_name--modifier & .function_or_feature_name-variant
 * Tabs instead of spaces :)
 
 ---
@@ -50,7 +51,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 #### Set up
 
 * **Ensure you point your web server to run from the /public/ directory**
-* Customise `includereplacemore.options.globals.siteName` in Gruntfile.js to set the site name as the page `<title>` suffix
+* Customise `twigger.options.data.siteName` in Gruntfile.js to set the site name as the page `<title>` suffix
 
 #### HTML Builds
 
@@ -147,7 +148,7 @@ var moduleName = (function() {
 
 * `gradient($nodes: (#f6f8f9, 0%, #e5ebee, 50%, #d7dee3, 50%, #f2f5f7, 100%), $direction: 'to bottom', repeating: false)`
 
-	Outputs the complete CSS3 gradient syntax for Chrome, Safari, Firefox, Opera, IE10, other capable browsers and SVG for IE9
+	Outputs a CSS gradient with an SVG fallback for IE9 and 
 
 	* `$nodes` takes a list of comma-separated #color, position% pairs. If only a single color is passed in, a plain `background` or `background-color` will be created depending on `$use-background-property`
 	* `$direction` takes either the legacy syntax or the unprefixed W3C syntax, including angles. The following angles are supported for SVGs: 0, 10, 45, 90, 135, 170, 180, 190, 225, 270, 315, 350
@@ -261,60 +262,9 @@ var moduleName = (function() {
 
 #### CSS Property mixins
 
-* `animation($property: default 1s ease)`
-
-	Outputs -moz, -o-, -webkit and unprefixed `animation` with the value passed in (default: default 1s ease)
-
-* `animation-delay($value: 1s)`
-
-	Outputs -moz, -o-, -webkit and unprefixed `animation-delay` with the value passed in (default: 1s)
-
-* `animation-direction($value: normal)`
-
-	Outputs -moz, -o-, -webkit and unprefixed `animation-direction` with the value passed in (default: normal)
-
-* `animation-duration($value: 1s)`
-
-	Outputs -moz, -o-, -webkit and unprefixed `animation-duration` with the value passed in (default: 1s)
-
-* `animation-fill-mode($value: none)`
-
-	Outputs -moz, -o-, -webkit and unprefixed `animation-fill-mode` with the value passed in (default: none)
-
-* `animation-iteration-count($value: 1)`
-
-	Outputs -moz, -o-, -webkit and unprefixed `animation-iteration-count` with the value passed in (default: 1)
-
-* `animation-name($value: default)`
-
-	Outputs -moz, -o-, -webkit and unprefixed `animation-name` with the value passed in (default: default)
-
-* `animation-timing-function($value: ease)`
-
-	Outputs -moz, -o-, -webkit and unprefixed `animation-timing-function` with the value passed in (default: ease)
-
 * `background($color, $duplicate-as-pie: false)`
 
 	Outputs a background rule with the $color specified. If $duplicate-as-pie is true, it will also output a -pie-background property (useful for overriding a gradient on hover, for example)
-
-* `border-radius($radius: 5px, $background-clip: padding-box)`
-
-	Outputs -webkit and unprefixed `border-radius`
-
-	* `$radius`: radius to use (default: 5px)
-	* `$background-clip`: which `background-clip` property to use (if any) (default: padding-box)
-
-* `box-shadow($shadow: 0 1px 3px rgba(0,0,0,.25))`
-
-	Outputs, -webkit and unprefixed `box-shadow` with the value passed in (default: 0 1px 3px rgba(0,0,0,.25))
-
-* `box-sizing($boxsize: border-box)`
-
-	Outputs -moz, -webkit and unprefixed `box-sizing` with the value passed in (default: border-box)
-
-* Flexbox
-
-	A complete set of Flexbox mixins for all syntax variations. See https://github.com/mastastealth/sass-flex-mixin for details and documentation.
 
 * `font-size-line-height($font-size, $line-height: false, $important: false)`
 
@@ -323,10 +273,6 @@ var moduleName = (function() {
 	* `$font-size`: target `font-size` to achieve in pixels
 	* `$line-height`: target `line-height` size to achieve in pixels if not `false` (default: false)
 	* `$important`: whether to also output an `!important` declaration on both properties (default: false)
-
-* `keyframes($name)`
-
-	Outputs -moz, -o-, -webkit and unprefixed animation `@keyframes` named with the value passed in
 
 * `line-height($target, $context: 16, $important: false)`
 
@@ -364,35 +310,6 @@ var moduleName = (function() {
 	* `$use-fallback`: whether to output the fallback color (default: true)
 	* `$use-background-color`: whether to use `background-color` property instead of `background` (default: false)
 
-* `transform($transform-function: none)`
-
-	Outputs, -ms, -moz, -o, -webkit and unprefixed `transform` with the value passed in (default: none)
-* `transform-origin($transform-origin: 50% 50% 0)`
-
-
-	Outputs, -ms, -moz, -o, -webkit and unprefixed `transform-origin` with the value passed in (default: 50% 50% 0)
-
-* `transition($property: all ease 0.2s)`
-
-	Outputs, -moz, -o, -webkit and unprefixed `transition` with the value passed in (default: all ease 0.2s)
-	Instances of `transform` or `transform-origin` will be prefixed as required.
-
-* `transition-delay($delay: 0.2s)`
-
-	Outputs, -moz, -o, -webkit and unprefixed `transition-delay` with the value passed in (default: 0.2s)
-
-* `transition-duration($duration: 0.2s)`
-
-	Outputs, -moz, -o, -webkit and unprefixed `transition-duration` with the value passed in (default: 0.2s)
-
-* `transition-property($property: all)`
-
-	Outputs, -moz, -o, -webkit and unprefixed `transition-property` with the value passed in (default: all)
-	Instances of `transform` or `transform-origin` will be prefixed as required.
-
-* `transition-timing-function($timing: ease)`
-
-	Outputs, -moz, -o, -webkit and unprefixed `transition-timing-function` with the value passed in (default: ease)
 
 31 transition-timing-function variables are defined in src/partials/_easing-functions.scss
 
