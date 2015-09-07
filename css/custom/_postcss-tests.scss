@@ -1,3 +1,11 @@
+.box-sizing {
+	box-sizing: border-box;
+}
+
+.box-shadow {
+	box-shadow: 1px 1px 1px #000 inset;
+}
+
 @keyframes MyAnimation {
 		0% { left: 0; }	
 	 50% { left: 200px; }	
@@ -15,12 +23,12 @@
 
 .auto_prefixer_transform {
 	transform: translateX(50px) rotate(30deg);
+	transform-origin: bottom 50%;
 	transition: transform ease .3s .2s;
-}
-
-.suzi_transform {
-	@include transform(translateX(50px) rotate(30deg));
-	@include transition(transform ease .3s .2s);
+	transition-delay: 3s;
+	transition-duration: 3s;
+	transition-property: translateX(50px) rotate(30deg);
+	transition-timing-function: ease-out;
 }
 
 .auto_prefixer_gradient {
@@ -135,40 +143,32 @@
 	animation-timing-function: ease;
 }
 
-@mixin border-radius($radius: 5px, $background-clip: padding-box) {
-	@if ($background-clip != false) {
-		background-clip: $background-clip;
+.mq-retina {
+	@include media-query-retina {
+		color: red;
 	}
-	
-	-webkit-border-radius: $radius;
-	border-radius: $radius;
 }
 
-@mixin box-shadow($shadow: 0 1px 3px rgba(0,0,0,.25)) {
-	-webkit-box-shadow: $shadow;
-	box-shadow: $shadow;
+.calc {
+	width: calc(100% - 10px);
 }
 
-@mixin box-sizing($boxsize: border-box) {
-	-moz-box-sizing: $boxsize;
-	-webkit-box-sizing: $boxsize;
-	box-sizing: $boxsize;
+.calc {
+	@include calc(width, '100% - 10px', 10%);
 }
 
-@mixin keyframes($name) {
-	@-moz-keyframes #{$name} {
-		@content;
-	}
-	
-	@-o-keyframes #{$name} {
-		@content;
-	}
-	
-	@-webkit-keyframes #{$name} {
-		@content;
-	}
-	
-	@keyframes #{$name} {
-		@content;
+::placeholder {
+   color: #999
+}
+
+form ::placeholder {
+   color: #999
+}
+
+.suzi form {
+	@include placeholder(#000);
+
+	@include media-query (730px) {
+		@include placeholder(green);
 	}
 }
