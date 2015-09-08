@@ -12,7 +12,7 @@ Suzi is the starting point for all of our web projects and a culmination of 6+ y
 * HTML templating using [grunt-twigger](https://github.com/noisysocks/grunt-twigger)
 * Automatically generated vendor prefixes for CSS using Autoprefixer PostCSS - [grunt-postcss](https://github.com/nDmitry/grunt-postcss)
 * BrowserSync for automatic live-reloading of changes & synchronised browser testing
-* BEM naming methodology with single underscores instead of single dashes for long class names: `.block_name--modifier`, `.block_name__element` & `.function_or_feature_name-variant`
+* BEM naming methodology with single underscores instead of single hyphens for delimiting long class names: `.block_name--modifier`, `.block_name__element` & `.function_or_feature_name-variant`
 * Starter content styles, including clean typography, lists, tables, etc
 * Starter form element styles: stacked on small-screen to 2-column at the breakpoint of your choice
 * Simple form validation
@@ -148,7 +148,7 @@ var moduleName = (function() {
 
 * `gradient($nodes: (#f6f8f9, 0%, #e5ebee, 50%, #d7dee3, 50%, #f2f5f7, 100%), $direction: 'to bottom', repeating: false)`
 
-	Outputs a CSS gradient with an SVG fallback for IE9 and 
+	Outputs a CSS gradient with SVG fallback for IE9 and CSS3PIE syntax for LT IE9
 
 	* `$nodes` takes a list of comma-separated #color, position% pairs. If only a single color is passed in, a plain `background` or `background-color` will be created depending on `$use-background-property`
 	* `$direction` takes either the legacy syntax or the unprefixed W3C syntax, including angles. The following angles are supported for SVGs: 0, 10, 45, 90, 135, 170, 180, 190, 225, 270, 315, 350
