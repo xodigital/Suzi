@@ -37,6 +37,6 @@
     "grunt-postcss": "^0.6.0",
     "grunt-regex-replace": "~0.2.6",
     "grunt-svgmin": "~0.4.0",
-    "grunt-twigger": "~1.0.1"
+    "grunt-twigger": "xodigital/grunt-twigger"
   }
 }
