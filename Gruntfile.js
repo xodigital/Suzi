@@ -29,6 +29,7 @@ module.exports = function (grunt) {
 				vendor: '<%= globalConfig.path.js.src %>/vendor',
 				dist: '<%= globalConfig.path.dist %>/<%= globalConfig.path.js.src %>',
 				distvendor: '<%= globalConfig.path.js.dist %>/vendor',
+				distmodules: '<%= globalConfig.path.js.dist %>/modules',
 				modules: '<%= globalConfig.path.js.src %>/modules'
 			},
 			images: {
@@ -144,6 +145,21 @@ module.exports = function (grunt) {
 			}
 		},
 
+		babel: {
+			option: {
+				sourceMap: false
+			},
+			dist: {
+				files: [{
+					expand: true,
+					cwd: '<%= globalConfig.path.js.modules %>',
+					src: ['**/*.js'],
+					dest: '<%= globalConfig.path.js.distmodules %>',
+					ext: '.js'
+				}]
+			}
+		},
+
 		concat: {
 			base: {
 				src: [
@@ -169,16 +185,17 @@ module.exports = function (grunt) {
 					'<%= globalConfig.path.js.vendor %>/jquery.transit.js',
 
 					// Modules - append as needed.
-					'<%= globalConfig.path.js.modules %>/accordion.js',
-					'<%= globalConfig.path.js.modules %>/cookie.js',
-					'<%= globalConfig.path.js.modules %>/forms.js',
-					'<%= globalConfig.path.js.modules %>/grid.js',
-					'<%= globalConfig.path.js.modules %>/placeholder.js',
-					'<%= globalConfig.path.js.modules %>/slider.js',
-					'<%= globalConfig.path.js.modules %>/tables.js',
-					'<%= globalConfig.path.js.modules %>/tabs.js',
-					'<%= globalConfig.path.js.modules %>/transition.js',
-					'<%= globalConfig.path.js.modules %>/viewport-size.js',
+					'<%= globalConfig.path.js.distmodules %>/accordion.js',
+					'<%= globalConfig.path.js.distmodules %>/cookie.js',
+					'<%= globalConfig.path.js.distmodules %>/forms.js',
+					'<%= globalConfig.path.js.distmodules %>/grid.js',
+					'<%= globalConfig.path.js.distmodules %>/placeholder.js',
+					'<%= globalConfig.path.js.distmodules %>/slider.js',
+					'<%= globalConfig.path.js.distmodules %>/tables.js',
+					'<%= globalConfig.path.js.distmodules %>/tabs.js',
+					'<%= globalConfig.path.js.distmodules %>/transition.js',
+					'<%= globalConfig.path.js.distmodules %>/awesome-es6-stuff.js',
+					'<%= globalConfig.path.js.distmodules %>/viewport-size.js',
 
 					// Application code.
 					'<%= globalConfig.path.js.src %>/app.js',
@@ -441,7 +458,7 @@ module.exports = function (grunt) {
 			},
 			js: {
 				files: ['<%= globalConfig.path.js.src %>/**/*.js'],
-				tasks: ['modernizr', 'newer:concat', 'regex-replace:cachebustjs'],
+				tasks: ['modernizr', 'babel', 'newer:concat', 'regex-replace:cachebustjs'],
 				options: {
 					spawn: false
 				}
@@ -500,11 +517,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-html');
 	grunt.loadNpmTasks('grunt-postcss');
+	grunt.loadNpmTasks('grunt-babel');
 
 	grunt.registerTask('default', ['build']);
 
-	grunt.registerTask('build', ['sass:dist', 'postcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'modernizr', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
-	grunt.registerTask('dev', ['sass:dev', 'postcss', 'regex-replace:cssimages', 'modernizr', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
+	grunt.registerTask('build', ['sass:dist', 'postcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'modernizr', 'babel', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
+	grunt.registerTask('dev', ['sass:dev', 'postcss', 'regex-replace:cssimages', 'modernizr', 'babel', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
 	grunt.registerTask('bust', ['regex-replace:cachebustcss', 'regex-replace:cachebustjs']);
 	grunt.registerTask('validate', ['htmllint']);
 	grunt.registerTask('version', ['regex-replace:version']);

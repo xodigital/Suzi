@@ -25,4 +25,5 @@ $(document).ready(function() {
 	tabs.init();
 	accordion.init();
 	tables.init();
+	es6Tests.init();
 });
