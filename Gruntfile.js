@@ -111,16 +111,26 @@ module.exports = function (grunt) {
 
 		modernizr: {
 			dist: {
-				devFile: 'remote',
-				outputFile: '<%= globalConfig.path.js.vendor %>/modernizr.js',
-				extra: {
-					shiv: false,
-					printshiv: false,
-					load: false,
-					mq: false,
-					cssclasses: true,
-				},
-				tests : ['csstransforms3d'],
+				devFile: false,
+				dest: '<%= globalConfig.path.js.vendor %>/modernizr.js',
+				options : [
+					'domPrefixes',
+					'prefixes',
+					'addTest',
+					'atRule',
+					'hasEvent',
+					'mq',
+					'prefixed',
+					'prefixedCSS',
+					'prefixedCSSValue',
+					'testAllProps',
+					'testProp',
+					'testStyles',
+					'html5printshiv',
+					'html5shiv',
+					'setClasses'
+				],
+				excludeTests: [],
 				uglify: false,
 				files: {
 					src: [
@@ -252,7 +262,7 @@ module.exports = function (grunt) {
 
 					params.data.currentPath = path;
 					params.data.currentBase = base;
-					params.data.hierarchy   = hierarchy;
+					params.data.hierarchy	 = hierarchy;
 				}
 			},
 			html: {
@@ -372,7 +382,7 @@ module.exports = function (grunt) {
 		watch: {
 			css: {
 				files: ['<%= globalConfig.path.css.src %>/**/*.scss'],
-				tasks: ['sass:dist', 'postcss', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'modernizr'],
+				tasks: ['sass:dist', 'postcss', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks'],
 				options: {
 					spawn: false,
 				}
@@ -417,7 +427,7 @@ module.exports = function (grunt) {
 		watchdev: {
 			css: {
 				files: ['<%= globalConfig.path.css.src %>/**/*.scss'],
-				tasks: ['sass:dev', 'postcss', 'regex-replace:cachebustcss', 'regex-replace:cssimages', 'modernizr'],
+				tasks: ['sass:dev', 'postcss', 'regex-replace:cachebustcss', 'regex-replace:cssimages'],
 				options: {
 					spawn: false,
 				}
@@ -493,8 +503,8 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', ['build']);
 
-	grunt.registerTask('build', ['sass:dist', 'postcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
-	grunt.registerTask('dev', ['sass:dev', 'postcss', 'regex-replace:cssimages', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
+	grunt.registerTask('build', ['sass:dist', 'postcss', 'regex-replace:cssimages', 'regex-replace:csslinebreaks', 'modernizr', 'newer:concat', 'uglify', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts']);
+	grunt.registerTask('dev', ['sass:dev', 'postcss', 'regex-replace:cssimages', 'modernizr', 'concat', 'copy:js', 'fileindex', 'regex-replace:fileindex', 'twigger', 'newer:imagemin', 'newer:svgmin', 'newer:copy:pie', 'newer:copy:fonts', 'browserSync', 'watchdev']);
 	grunt.registerTask('bust', ['regex-replace:cachebustcss', 'regex-replace:cachebustjs']);
 	grunt.registerTask('validate', ['htmllint']);
 	grunt.registerTask('version', ['regex-replace:version']);
