@@ -32,7 +32,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-fileindex": "~0.1.0",
     "grunt-html": "~1.4.0",
-    "grunt-modernizr": "~0.6.0",
+    "grunt-modernizr": "^1.0.0",
     "grunt-newer": "~0.7.0",
     "grunt-postcss": "^0.6.0",
     "grunt-regex-replace": "~0.2.6",
