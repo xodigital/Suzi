@@ -20,7 +20,7 @@
 			content: '' !important;
 		}
 		
-		~ .hidden {
+		~ .hide {
 			display: inline-block;
 			@include font-size-line-height(10px, 12px);
 			height: auto;

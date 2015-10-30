@@ -1,6 +1,6 @@
 /*!
  * modernizr v3.2.0
- * Build http://modernizr.com/download?-flash-fontface-hidden-placeholder-addtest-atrule-domprefixes-hasevent-mq-prefixed-prefixedcss-prefixedcssvalue-prefixes-printshiv-testallprops-testprop-teststyles-dontmin
+ * Build http://modernizr.com/download?-flash-fontface-placeholder-addtest-atrule-domprefixes-hasevent-mq-prefixed-prefixedcss-prefixedcssvalue-prefixes-printshiv-testallprops-testprop-teststyles-dontmin
  *
  * Copyright (c)
  *  Faruk Ates
@@ -2201,28 +2201,6 @@ Detects Flash support as well as Flash-blocking plugins
     });
   }
 ;
-/*!
-{
-  "name": "[hidden] Attribute",
-  "property": "hidden",
-  "tags": ["dom"],
-  "notes": [{
-    "name": "WHATWG: The hidden attribute",
-    "href": "http://developers.whatwg.org/editing.html#the-hidden-attribute"
-  }, {
-    "name": "original implementation of detect code",
-    "href": "https://github.com/aFarkas/html5shiv/blob/bf4fcc4/src/html5shiv.js#L38"
-  }],
-  "polyfills": ["html5shiv"],
-  "authors": ["Ron Waldon (@jokeyrhyme)"]
-}
-!*/
-/* DOC
-Does the browser support the HTML5 [hidden] attribute?
-*/
-
-  Modernizr.addTest('hidden', 'hidden' in createElement('a'));
-
 /*!
 {
   "name": "placeholder attribute",

@@ -144,8 +144,8 @@
 	float: right;
 }
 
-.hidden {
-	@include hidden;
+.hide {
+	@include hide;
 }
 
 .horizontal {
