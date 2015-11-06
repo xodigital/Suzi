@@ -24,6 +24,7 @@ var placeholder = (function() {
 				});
 
 				$html.addClass('placeholder');
+
 			}
 		}
 	};

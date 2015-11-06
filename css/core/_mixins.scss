@@ -131,7 +131,7 @@ $rem-with-px-fallback: true !default;
 	}
 }
 
-@mixin hidden($hide: true) {
+@mixin hide($hide: true) {
 	@if ($hide == false) {
 		height: auto;
 		position: static;
