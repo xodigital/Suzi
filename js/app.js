@@ -26,4 +26,5 @@ $(document).ready(function() {
 	accordion.init();
 	tables.init();
 	es6Tests.init();
+	
 });
