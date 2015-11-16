@@ -1,36 +1,31 @@
 @charset 'UTF-8';
 
 // Configuration and helpers
-@import
-	"helpers/mixins",
-	"helpers/easing-functions",
-	"helpers/config",
-	"helpers/silents";
+@import "helpers/mixins";
+@import "helpers/easing-functions";
+@import "helpers/config";
+@import "helpers/silents";
 
 // Base
-@import
-	"base/viewport",
-	"base/reset",
-	"base/fonts",
-	"base/icon-fonts",
-	"base/constants",
-	"base/generic-classes";
+@import "base/viewport";
+@import "base/reset";
+@import "base/fonts";
+@import "base/icon-fonts";
+@import "base/constants";
+@import "base/generic-classes";
 
 // Layout
-@import
-	"layout/simple",
-	"layout/forms",
-	"layout/layout";
+@import "layout/simple";
+@import "layout/forms";
+@import "layout/layout";
 
 // Components
-@import
-	"components/grid",
-	"components/carousel",
-	"components/accordion";
+@import "components/grid";
+@import "components/carousel";
+@import "components/accordion";
 
 // Page-specific styles
-/* @import
-	'pages/'; */
+// @import "pages/";
 
 @media print {
 	@import "base/print";
