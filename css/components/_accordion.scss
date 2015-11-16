@@ -1,6 +1,35 @@
+.accordion {
+	.js & {
+		visibility: hidden;
+	}
+	
+	.jquery & {
+		visibility: visible;
+	}
+}
+
+.accordion__toggler {
+	display: block;
+	text-decoration: none;
+}
+
 .accordion__content {
 	.js & {
+		height: 0;
+		overflow: hidden;
 		transition: height ease 0.7s;
+	}
+	
+	.js .open + & {
+		height: auto;
+	}
+	
+	.js .accordion--to_tabs .open + & {
+		height: auto !important;
+	}
+	
+	.accordion--to_tabs & {
+		transition: none !important;
 	}
 }
 
