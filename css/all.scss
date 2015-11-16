@@ -1,31 +1,42 @@
 @charset 'UTF-8';
 
+
 // Configuration and helpers
 @import "helpers/mixins";
 @import "helpers/easing-functions";
 @import "helpers/config";
 @import "helpers/silents";
 
+
 // Base
-@import "base/viewport";
-@import "base/reset";
-@import "base/fonts";
-@import "base/icon-fonts";
+@import "base/core/reset";
+@import "base/core/viewport";
+
 @import "base/constants";
+@import "base/icon-fonts";
 @import "base/generic-classes";
+
+@import "base/typography/btns";
+@import "base/typography/fonts";
+@import "base/typography/general";
+@import "base/typography/headings";
+
 
 // Layout
 @import "layout/simple";
 @import "layout/forms";
 @import "layout/layout";
 
+
 // Components
 @import "components/grid";
 @import "components/carousel";
 @import "components/accordion";
 
+
 // Page-specific styles
 // @import "pages/";
+
 
 @media print {
 	@import "base/print";

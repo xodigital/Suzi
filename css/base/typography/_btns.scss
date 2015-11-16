@@ -1,0 +1,67 @@
+/* --------------------------------------------
+	Buttons
+----------------------------------------------- */
+
+.btn, button, [type="submit"] {
+	-webkit-appearance: none;
+	@include gradient($btn-background-color);
+	border: 1px solid $btn-border-color;
+	border-radius: $btn-border-radius;
+	box-sizing: border-box;
+	color: $btn-text-color;
+	cursor: pointer;
+	display: inline-block;
+	font-family: $std-font-family;
+	@include rem(font-size, $btn-font-size);
+	line-height: normal;
+	margin: 0;
+	overflow: visible;
+	@include rem(padding, $form-btn-padding-vertical $form-btn-padding-horizontal);
+	text-decoration: none !important;
+	width: 100%;
+
+	&::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+	}
+	
+	@include hover {
+		color: $btn-hover-text-color;
+	}
+
+	.vendor-mozilla & {
+		@include rem(padding-top, $form-btn-padding-vertical - 1, false);
+	}
+	
+	@include hover {
+		@include gradient($btn-hover-background-color);
+		border-color: $btn-hover-border-color;
+	}
+}
+
+.btn {
+	width: auto;
+}
+
+// .btns & [type="submit"]s will render at different sizes. Modify as appropriate to make them equal
+.btn {
+	.ie &, .vendor-ie & {
+	}
+	
+	.vendor-mozilla & {
+	}
+	
+	.vendor-webkit & {
+	}
+}
+
+button, [type="submit"] {
+	.ie &, .vendor-ie & {
+	}
+	
+	.vendor-mozilla & {
+	}
+	
+	.vendor-webkit & {
+	}
+}

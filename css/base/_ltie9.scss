@@ -24,13 +24,13 @@ img {
 	Simple Customisations
 ----------------------------------------------- */
 
-@import "bp-img-float";
+@import "core/bp-img-float";
 
 /* --------------------------------------------
 	Forms
 ----------------------------------------------- */
 
-@import "bp-form-fields";
+@import "core/bp-form-fields";
 
 @if ($form-bp > 0) {
 	.form_row label, .form_row .label, .radio_checkbox_group_legend {

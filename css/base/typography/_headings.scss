@@ -1,0 +1,66 @@
+/* --------------------------------------------
+	Headings
+----------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+	color: $std-color;
+	font-family: $heading-font-family;
+	font-weight: bold;
+	line-height: normal;
+	@include rem(margin, $std-margin * 2 0 $std-margin / 2);
+	
+	.no-fontface & {
+		font-family: $heading-no-fontface-font-family;
+	}
+
+	&:first-child,
+	& + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
+		margin-top: 0;
+	}
+	
+	& + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
+		color: $sub-color;
+	}
+}
+
+h1 {
+	@include rem(font-size, $heading1-font-size);
+}
+
+h2 {
+	@include rem(font-size, $heading2-font-size);
+}
+
+h3 {
+	@include rem(font-size, $heading3-font-size);
+}
+
+h4 {
+	@include rem(font-size, $heading4-font-size);
+}
+
+h5 {
+	@include rem(font-size, $heading5-font-size);
+}
+
+h6 {
+	@include rem(font-size, $heading6-font-size);
+}
+
+@for $h from 1 to 7 {
+	.h#{$h} {
+		@extend h#{$h};
+	}
+}
+
+.heading_color-sub {
+	color: $sub-color;
+}
+
+.heading_color-alt {
+	color: $alt-color;
+}
+
+.heading_color-std {
+	color: $std-color;
+}

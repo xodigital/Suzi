@@ -7,7 +7,7 @@
 }
 
 /* --------------------------------------------
-	Reset
+	Reset Lists
 ----------------------------------------------- */
 
 .reset, .reset--all ul, .reset--all ol, .reset--all li, .reset--immediate > ul, .reset--immediate > ol, .reset--immediate > li, .radio_checkbox_group ul {
@@ -152,7 +152,7 @@ img {
 }
 
 @media ($min em($float-bp)) {
-	@import "bp-img-float";
+	@import "core/bp-img-float";
 }
 
 .js {
@@ -320,66 +320,6 @@ a {
 
 :visited {
 	color: $std-visited-color;
-}
-
-/* --------------------------------------------
-	Headings
------------------------------------------------ */
-
-h1 {
-	@include rem(font-size, $heading1-font-size);
-}
-
-h2 {
-	@include rem(font-size, $heading2-font-size);
-}
-
-h3 {
-	@include rem(font-size, $heading3-font-size);
-}
-
-h4 {
-	@include rem(font-size, $heading4-font-size);
-}
-
-h5 {
-	@include rem(font-size, $heading5-font-size);
-}
-
-h6 {
-	@include rem(font-size, $heading6-font-size);
-}
-
-@for $h from 1 to 7 {
-	.h#{$h} {
-		@extend h#{$h};
-	}
-}
-
-h1, h2, h3, h4, h5, h6 {
-	color: $std-color;
-	
-	&:first-child,
-	& + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
-		margin-top: 0;
-	}
-	
-	& + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
-		color: $sub-color;
-	}
-	
-}
-
-.heading_color-sub {
-	color: $sub-color;
-}
-
-.heading_color-alt {
-	color: $alt-color;
-}
-
-.heading_color-std {
-	color: $std-color;
 }
 
 /* --------------------------------------------
@@ -579,7 +519,7 @@ input {
 	cursor: pointer;
 }
 
-.btn, button, [type="submit"], .input-text, label, .label, .radio_checkbox_group_legend, select, textarea {
+.input-text, label, .label, .radio_checkbox_group_legend, select, textarea {
 	box-sizing: border-box;
 	display: block;
 	font-family: $std-font-family;
@@ -696,35 +636,7 @@ textarea {
 }
 
 @media ($min em($form-bp)) {
-	@import "bp-form-fields";
-}
-
-.btn {
-	width: auto;
-}
-
-.btn, button, [type="submit"] {
-	-webkit-appearance: none;
-	border-radius: $btn-border-radius;
-	color: $btn-text-color;
-	cursor: pointer;
-	display: inline-block;
-	margin: 0;
-	overflow: visible;
-	text-decoration: none !important;
-	
-	&::-moz-focus-inner {
-		border: 0;
-		padding: 0;
-	}
-	
-	@include hover {
-		color: $btn-hover-text-color;
-	}
-}
-
-button, [type="submit"] {
-	@include rem(font-size, $btn-font-size);
+	@import "core/bp-form-fields";
 }
 
 /* --------------------------------------------
@@ -749,7 +661,6 @@ button, [type="submit"] {
 .confirmation_heading {
 	@include rem(font-size, 16px);
 	margin-bottom: 0;
-	padding-left: 24px;
 	position: relative;
 	
 	.ltie8 & {
