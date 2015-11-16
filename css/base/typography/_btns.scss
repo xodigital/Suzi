@@ -42,26 +42,3 @@
 .btn {
 	width: auto;
 }
-
-// .btns & [type="submit"]s will render at different sizes. Modify as appropriate to make them equal
-.btn {
-	.ie &, .vendor-ie & {
-	}
-	
-	.vendor-mozilla & {
-	}
-	
-	.vendor-webkit & {
-	}
-}
-
-button, [type="submit"] {
-	.ie &, .vendor-ie & {
-	}
-	
-	.vendor-mozilla & {
-	}
-	
-	.vendor-webkit & {
-	}
-}
