@@ -249,7 +249,7 @@ module.exports = function (grunt) {
 				dest: '<%= globalConfig.path.js.distvendor %>'
 			},
 			pie: {
-				src: '<%= globalConfig.path.css.src %>/PIE.htc',
+				src: '<%= globalConfig.path.css.src %>/helpers/PIE.htc',
 				dest: '<%= globalConfig.path.css.dist %>/PIE.htc'
 			}
 		},

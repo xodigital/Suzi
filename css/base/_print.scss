@@ -37,3 +37,12 @@ ul {
 .confirmation_heading, .file_icon--reversed {
 	padding-left: 0;
 }
+
+header form, #col_1, #nav_seo {
+	@extend .print_display-none;
+}
+
+/* --------------------------------------------
+	Site Specific
+----------------------------------------------- */
+

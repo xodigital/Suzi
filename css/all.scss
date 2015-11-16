@@ -1,33 +1,37 @@
-/*
- * Suzi v2.1.0 (2014-10-26)
- * A responsive, Sass and Grunt UI Framework by Matt Stow
- * http://mattstow.com
-*/
+@charset 'UTF-8';
 
-@import "core/mixins";
-@import "core/easing-functions";
-@import "custom/mixins";
-@import "custom/config";
-@import "core/silents";
+// Configuration and helpers
+@import
+	"helpers/mixins",
+	"helpers/easing-functions",
+	"helpers/config",
+	"helpers/silents";
 
-@import "core/viewport";
-@import "core/reset";
-@import "custom/fonts";
-@import "core/constants";
+// Base
+@import
+	"base/viewport",
+	"base/reset",
+	"base/fonts",
+	"base/icon-fonts",
+	"base/constants",
+	"base/generic-classes";
 
-@import "custom/simple";
-@import "custom/grid";
+// Layout
+@import
+	"layout/simple",
+	"layout/forms",
+	"layout/layout";
 
-@import "custom/forms";
-@import "custom/carousel";
-@import "custom/accordion";
+// Components
+@import
+	"components/grid",
+	"components/carousel",
+	"components/accordion";
 
-@import "custom/site";
-@import "custom/safari-gpu-font-fixes";
-
-@import "core/generic-classes";
+// Page-specific styles
+/* @import
+	'pages/'; */
 
 @media print {
-	@import "core/print";
-	@import "custom/print";
+	@import "base/print";
 }
