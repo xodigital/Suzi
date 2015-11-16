@@ -1,0 +1,14 @@
+/* --------------------------------------------
+	Lists
+----------------------------------------------- */
+
+ul > li {
+	&:before {
+		background: $text-color;
+		border-radius: 50%;
+		height: 5px;
+		left: -18px;
+		@include rem(top, $list-bullet-top);
+		width: 5px;
+	}
+}
