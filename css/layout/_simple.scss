@@ -14,23 +14,6 @@ a {
 	}
 }
 
-.link-feature {
-	text-decoration: none;
-	
-	&:after {
-		@include triangle;
-		margin-left: em(10px);
-	}
-	
-	&:visited:after {
-		border-left-color: $std-visited-color;
-	}
-	
-	@include hover(after) {
-		border-left-color: $std-hover-color;
-	}
-}
-
 sub, sup {
 	font-size: em(12px, $std-font-size);
 	
