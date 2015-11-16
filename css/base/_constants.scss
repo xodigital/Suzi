@@ -125,104 +125,6 @@ a img, img[usemap] {
 	border: 0;
 }
 
-.file_icon {
-	display: inline-block;
-}
-
-.file_icon:after, .file_icon--reversed:before {
-	background: url('{{ imgPath }}std_icons.png');
-	content: '';
-	display: inline-block;
-	@include rem(margin-left, 5px);
-	height: 16px;
-	vertical-align: middle;
-	width: 16px;
-
-	@include media-query-retina {
-		background-image: url('{{ imgPath }}std_icons@2x.png');
-		background-size: 16px auto;
-	}
-}
-
-.file_icon--reversed {
-	padding-left: 21px;
-	
-	&:before {
-		margin-left: -21px;
-		@include rem(margin-right, 5px);
-	}
-	
-	&:after {
-		display: none;
-	}
-}
-
-.file_icon--link {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -16px;
-	}
-}
-
-.file_icon--pdf {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -32px;
-	}
-}
-
-.file_icon--zip {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -48px;
-	}
-}
-
-.file_icon--audio {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -64px;
-	}
-}
-
-.file_icon--video {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -80px;
-	}
-}
-
-.file_icon--doc {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -96px;
-	}
-}
-
-.file_icon--image {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -112px;
-	}
-}
-
-.file_icon--excel {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -128px;
-	}
-}
-
-.file_icon--file {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -144px;
-	}
-}
-
-.file_icon--page {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -160px;
-	}
-}
-
-.file_icon--rss {
-	&:after, &.file_icon--reversed:before {
-		background-position: 0 -176px;
-	}
-}
-
 img {
 	-moz-force-broken-image-icon: 1;
 	-ms-interpolation-mode: bicubic;
@@ -854,31 +756,11 @@ button, [type="submit"] {
 		color: #b00;
 		padding-left: 0;
 	}
-	
-	&:before {
-		background: url('{{ imgPath }}std_icons.png') 0 -192px;
-		content: '';
-		height: 16px;
-		margin-left: -24px;
-		margin-top: -8px;
-		position: absolute;
-		top: 50%;
-		width: 16px;
-		
-		@include media-query-retina {
-			background-image: url('{{ imgPath }}std_icons@2x.png');
-			background-size: 16px auto;
-		}
-	}
 }
 
 .confirmation_heading--ok {
 	.ltie8 & {
 		color: #060;
-	}
-	
-	&:before {
-		background-position: 0 -208px;
 	}
 }
 
